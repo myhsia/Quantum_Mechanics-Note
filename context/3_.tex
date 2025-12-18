@@ -1956,8 +1956,8 @@ We have
 The three $\ket|\uparrow\uparrow>$,
     $\frac1{\sqrt2}(\ket|\uparrow\downarrow> + \ket|\downarrow\uparrow>)$,
     $\ket|\downarrow\downarrow>$
-are called the spin triplet, and the other single one is called the spin singlet.
-
+are called the spin triplet, and the other single one is called the spin
+singlet.
 We can take it into a grid
 \begin{center}
   \includegraphics[width = \linewidth]{tensor}
@@ -1970,4 +1970,242 @@ The states will eventually decompose to
   j_1 \times j_2 = (j_1 + j_2) + (j_1 + j_2 - 1) + \cdots + |j_1 - j_2|.
 \]
 
-\section{Gauge}
+\section{Identical (Particles \& Second Quantization)}
+
+\subsection{Indistinguishability}
+
+\paragraph{The HOM (Hong-Ou-Mande Experiment)}
+
+\begin{paracol}{2}
+We have two-side beam splitter, meaning that particles from two sides can be
+translated/reflected.  
+Means particle from 1 can reach 4 or 3, particle from 2 can reach 3 or 4.
+
+Denote the simple case: the transform probability is $50\%$.
+\switchcolumn \centering
+\begin{tikzpicture}
+  \begin{feynhand}
+    \propag [fermion] (-1,1) node [left] {$1$} to (0,0);
+    \propag [fermion] (0,0) to (-1,-1) node [left] {$3$};
+    \propag [fermion] (1,1) node [right] {$2$} to (0,0);
+    \propag [fermion] (0,0) to (1,-1) node [right] {$4$};
+  \end{feynhand}
+  \draw (-.2,1) rectangle (.2,-1);
+  \draw [<->] (-.6,.6) -- node [above] {$\Delta\tau \approx 0$} (.6,.6);
+\end{tikzpicture}
+\end{paracol}
+\begin{paracol}{2}
+The probabilities are
+\[
+  \frac14(3,3),\ \frac14(4,4),\ \frac14(3,4) + \frac14(4,3) = \frac12.
+\]
+With the boson case (red line, HOM, PRL 59, 2044 (1987)) and the fermion case
+(green line, Science 339, 1054 (2013))
+\switchcolumn \centering
+\begin{tikzpicture}
+  \draw [->] (0,0) -- node [left] {$\frac12$} (0,2)
+   node [left] {$P_{\braket<34>}$};
+  \draw [->] (0,0) node [left] {$0$} -- (2,0) node [below] {$\Delta\tau$};
+  \draw [red, rounded corners] (0,1) -- (.8,1) -- (.9,.5) -- (1,0) --
+    (1.1,.5) -- (1.2,1) -- (2,1);
+  \draw [green, rounded corners]
+    (0,1) -- (.8,1) -- (.9,1.5) -- (1,2) -- (1.1,1.5) -- (1.2,1) -- (2,1);
+\end{tikzpicture}
+\end{paracol}
+We have the scattering probability matrix
+\[
+  S = \frac1{\sqrt2}
+  \begin{pNiceMatrix}[first-col, last-row]
+    \ket|3> & 1 & 1\\
+    \ket|4> & 1 & -1\\
+    & \bra<1| & \bra<1|
+  \end{pNiceMatrix}
+\]
+The outgoing state
+\begin{align*}
+  \ket|\text{outgoing}> = S\ket|1>_a \otimes S\ket|2>_b &
+= \frac1{\sqrt2}(\ket|3> + \ket|4>) \otimes
+  \frac1{\sqrt2}(\ket|3>_b - \ket|4>_b)\\
+& = \frac12 (
+    \ket|3>_a \otimes \ket|3>_b - \ket|4>_a \otimes \ket|4>_b
+  - \ket|3>_a \otimes \ket|4>_b + \ket|4>_a \otimes \ket|3>_b)
+\end{align*}
+Applying the indistinguishability,
+\[
+  \ket|\text{outgoing}>
+= S(p\ket|1>_a \otimes \ket|2>_b + q\ket|2>_a \otimes \ket|1>_b)
+\]
+By exchanging $a$ and $b$
+\[
+  (p\ket|1_a2_b> + q\ket|2_a1_b>)
+=  p\ket|1_a2_a> + q\ket|2_b1_a>
+= \upe^{\iu\varphi} (q\ket|2_a1_b> + p\ket|1_a2_b>).
+\]
+The phase factor
+\[
+  \upe^{\iu\varphi} = \frac pq = \frac qp = \eta =
+  \begin{cases*}
+    +1, & Boson\\
+    -1, & Fermion
+  \end{cases*}
+\]
+With the scattering matrix inserted
+\begin{align*}
+  \ket|\text{outgoing}> & = (S\ket|1>_a \otimes S\ket|2>_b
+     + \eta S\ket|2> \otimes S\ket|1>_b)\\
+& = \frac12 (\ket|3>_a + \ket|4>_a) \otimes (\ket|3>_b - \ket|4>_b)
++ \eta \frac1{2\sqrt2} (\ket|3>_a - \ket|4>_a) \otimes
+  (\ket|3>_b + \ket|4>_a)\\
+& = \begin{cases}
+  \frac1{\sqrt2} (+\ket|3_a3_b> - \ket|4_a4_b>), & \eta = +1,\\
+  \frac1{\sqrt2} (-\ket|3_a4_b> + \ket|4_a3_b>), & \eta = -1.
+\end{cases}
+\end{align*}
+\[
+  \ket|2p> = \frac1{\sqrt2}
+  (\ket|\psi>_a \otimes \ket|\chi>_b + \eta \ket|\chi>_a \otimes \ket|\psi>_b)
+\]
+We don't care ``which particle'' in what state, we care which state occupied by
+how many particles.
+
+We talke about exchange of particles ($a \leftrightarrow b$),
+become the exchange of the order of occupation.
+Instead of writing $\ket|2p>$, we write
+\[
+  \frac12(\ket|\psi>_a \otimes \ket|\chi>_b
+    + \eta\ket|\chi>_a \otimes \ket|\psi>_b)
+  \to \ket|1_\chi1_\psi> = \chi^\dagger \psi^\dagger \ket|0>
+  = \eta \psi^\dagger \chi^\dagger |0>
+\]
+For general mant-particle state
+\[
+  \ket|n_D n_{D-1} \cdots n_1> \equiv \frac1N
+  (\psi_D^\dagger)^{n_D} (\psi_{D-1}^\dagger)^{n_{D-1}} \cdots
+  (\psi_1^\dagger)^{n_1} \ket|0>.
+\]
+where the LHS is the dimension of 1p states, $n_i$ is the i-th of particle of
+occupation.
+\paragraph{Occupation number representation}
+
+The Fock space ban be
+\[
+  \operatorname{span} (\{\ket|n_D,n_{D-1} \cdots n_1> = 
+  \frac1N
+  (\psi_D^\dagger)^{n_D} (\psi_{D-1}^\dagger)^{n_{D-1}} \cdots
+  (\psi_1^\dagger)^{n_1} \ket|0>\}).
+\]
+Denote $D$: \# of 1p states,
+$N$: \# of particles.
+\begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    Classical & Bosonic & Fermionic\\
+    \midrule
+    $D^N$ & $C_{N+D-1}^N$ & $C_D^N$\\
+    \bottomrule
+  \end{tabular}
+\end{center}
+For foxed $N$
+\[
+  N = 0,\quad \psi_{a,0}\ket|0> = 0, \forall\psi_i;
+  N = 1, \ket|1_{\psi_i}> = \{\ket|\psi_i>\},\
+\]
+Denote $H^0$: $N = 0$, $\psi_i \ket|0> = 0$;
+$H^1$: $-N1=$
+\[
+  F = H^0 \oplus H^1 \oplus H^2 \oplus \cdots \oplus H^N \oplus \cdots
+\]
+\rule\linewidth{1pt}
+\[
+  [\psi_i^\dagger, \psi_j^\dagger]_\eta = 0 = [\psi_i, \psi_j]_\eta, \quad
+  [\psi_i, \psi_j^\dagger]_\eta = \delta_{ij}.
+\]
+\paragraph{Quiz}
+$\psi_i^\dagger\ket|n_Dn_{D-1}\cdots n_1> = ?$
+\[
+  \eta^{\sum_{j>i} n_j} \sqrt{1 + \eta n_i}\ket|\cdots n_i + 1 \cdots>
+\]
+\subsection{Basis (change)}
+
+For $H^1$-level
+\[
+  \{\ket|\psi_i>\},\ \{\ket|\chi_i>\},\
+  \ket|\Psi> = \sum_i \ket|\psi_i>\braket<\psi_i|\Psi>
+= \sum_{i,j} \ket|\chi_j>(\braket<\chi_j|\chi_i>\braket<\psi_i|\Psi>)
+\]
+For the two-particle level,
+\[
+  H_{i>j}^2:\ \{\ket|I_{\psi_i},I_{\psi_j}> = \ket|\psi_i,\psi_j>\},\
+  \{\ket|\chi_i \chi_j>\}.
+\]
+According to
+\[
+  \ket|\psi_i> = \sum_{i'} \ket|\chi_{i'}> U_{i'i}
+\]
+we can have $\psi_i^\dagger = \chi_{i'}^\dagger U_{i'i}$. Using it twice
+\[
+  \psi_i^\dagger\psi_j^\dagger
+= \sum_{i',j'} \chi_{i'}^\dagger U_{i'i} \chi_{j'}^\dagger U_{j'j}.
+= \sum_{i'=j'} (\chi_{i'}^\dagger)^2 U_{i'i} U_{i'j}
+  \sum_{i'>j'} \chi_{i'}^\dagger \chi_{j'}^\dagger
+    (U_{i'i} U_{j'j} + \eta U_{j'i} U_{i'j})
+\]
+Take $\eta = -1$, the Fermionic case
+\[
+  \ket|\psi_i\psi_j> = \sum_{i'>j'} \ket|\chi_{i'}\chi_{j'}>
+  (U_{i'i}U_{j'j} - U_{j'i} U_{i'j})
+\]
+in the bracket
+\[
+  \braket<\chi_{i'}\chi_{j'}|\psi_i\psi_j>
+= \braket<\chi_1\chi_2|\psi_1\psi_2>
+= \psi_1(\chi_1) \psi_2(\chi_2) - \psi_1(\chi_2) \psi_2(\chi_1)
+= \begin{vmatrix}
+    \psi_1(\chi_1) & \psi_1(\chi_2)\\
+    \psi_2(\chi_1) & \psi_2(\chi_2)
+  \end{vmatrix}
+\]
+\subsection{Operators}
+
+\[
+  \hat O = \sum_{\alpha,\beta}\ketbra|\alpha>O_{\alpha\beta}<\beta|,\quad
+  \hat O_F = \sum_{\alpha,\beta} \alpha^\dagger O_{\alpha\beta}\beta
+\]
+where in the Fock space, $\alpha$ and $\beta$ will label the single
+particle state.
+\[
+  H^2:\ \hat O^{(2)} = \sum_{\substack{\alpha\beta\\\gamma\delta}}
+    \ketbra|\alpha\beta>O_{\alpha,\gamma\delta}<\gamma\delta|,\quad
+  F:\ \hat O_F^{(2)} = \sum \underbrace{O_{\alpha\beta,\gamma\delta}
+    \alpha^\dagger \beta^\dagger \delta\gamma}_
+    {\braket<\alpha\beta|\hat O^{(2)}|\gamma\delta>}
+\]
+\begin{example}
+  Electric potential $U(\bm r)$.
+  \[
+    U(\bm r) = \braket<\bm r|\hat U|\bm r>.
+  \]
+  Since $\ket|\bm r> = \psi^\dagger(\bm r) \ket|0>$, in the Fock space
+  \[
+    \hat U = \int \d\bm r U(\bm r)
+    \underbrace{\psi^\dagger(\bm r) \psi(\bm r)}_{n(\bm r) = a^\dagger a}
+  \]
+\end{example}
+\begin{example}
+  Couloomb interaction (two-particle state)
+  \[
+    V(\bm r_1,\bm r_2) = \frac{e^2}{|\bm r_1 - \bm r_2|}.
+  \]
+  The matrix element
+  \[
+    V(\bm r_1, \bm r_2) = \braket<\bm r_1,\bm r_2|\hat V|\bm r_1,\bm r_2>.
+  \]
+  In the fock space
+  \[
+    \hat V = \frac12 \int \d\bm r_1 \d\bm r_2 V(\bm r_1,\bm r_2)
+    \psi_{\bm r_1}^\dagger \underbrace{\psi_{\bm r_2}^\dagger
+    \psi_{\bm r_1}}_{n(\bm r_2)} \psi_{\bm r_2}
+  = \int \d\bm r_1 \d\bm r_2 V(\bm r_1,\bm r_2) n(\bm r_1) n(\bm r_2).
+  \]
+\end{example}
+Change of basis: correlation + exchange.
