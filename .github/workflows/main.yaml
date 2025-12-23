@@ -15,6 +15,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+      - name: Install Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Install minted
+        run: pip install --force-reinstall latexminted
       - name: Install TeX Live
         uses: zauguin/install-texlive@v4
         with:
