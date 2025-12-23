@@ -102,5 +102,6 @@ float
 stmaryrd
 pgfopts
 cjk
-upquote
 minted
+upquote
+lineno
