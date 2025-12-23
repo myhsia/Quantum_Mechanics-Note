@@ -49,7 +49,9 @@ anyfontsize
 booktabs
 cancel
 caption
+bbm
 bbm-macros
+cm
 derivative
 duckuments
 enumext
@@ -87,8 +89,15 @@ ulem
 xfrac
 xcolor
 zref
+#
 # For this repo
 whatsnote
+tikz-feynhand
+carlisle
+doublestroke
 biblatex
+biber
+biblatex-phys
 float
-minted
+stmaryrd
+CJKutf8
