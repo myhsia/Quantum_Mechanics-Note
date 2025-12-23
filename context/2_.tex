@@ -25,7 +25,7 @@
 \begin{enumext}[label = (\alph*)]
   \item Quantum
     \[
-      \hat U(t_f,t_i) = \mathbbm 1 + \ab(-\frac\iu\hbar) \int_{t_i}^{t_f} \d t_1 \hat H(t_1)
+      \hat U(t_f,t_i) = \identity + \ab(-\frac\iu\hbar) \int_{t_i}^{t_f} \d t_1 \hat H(t_1)
     + \ab(-\frac\iu\hbar)^2 \int_{t_i}^{t_f} \d t_1 \int_{t_i}^{t_1} \d t_2   \hat H(t_1) \hat H(t_2) + \cdots
     \]
     Problem: Discontinuous!
@@ -267,9 +267,9 @@ $n$ means we sum over the \emph{microstates}: they are configuration.
 \end{example}
 Recall the P.I. $\phi = x(t)$, Generalize it
 \begin{align*}
-  \mathbb I (\tikz[font = \tiny]{\draw (0,0) node [above] {$t_i$} -- (.5,0) node [above] {$t_f$};}) & \longrightarrow \mathbbm R (\{x\})\\
+  \mathbb I (\tikz[font = \tiny]{\draw (0,0) node [above] {$t_i$} -- (.5,0) node [above] {$t_f$};}) & \longrightarrow \mathbb R (\{x\})\\
   \downarrow\\
-  \mathbbm R^{d+1} (\mathbbm Z^{d+1}) & \longrightarrow M
+  \mathbb R^{d+1} (\mathbb Z^{d+1}) & \longrightarrow M
 \end{align*}
 We can say we sum over the states, i.e., sum over different configurations
 \[
@@ -288,12 +288,12 @@ Concering the $\beta E$ term: Energy depends on the configuration, a kind of map
 
 This somehow we go from P.I. to P.F.
 We have a targest space $M$. From the $I$, between $t_i$ and $t_f$, mapping to the space $M$, where $t \in \mathbb R$.
-And a complex plane $\mathbbm C$.
+And a complex plane $\mathbb C$.
 \begin{center}
   \begin{minipage}{.32\linewidth}
     \centering
     \begin{tikzpicture}
-      \draw [->] (0,0) --++ (3,0) node [below] {$t \in \mathbbm R$};
+      \draw [->] (0,0) --++ (3,0) node [below] {$t \in \mathbb R$};
       \node [below] at (.5,0) {$t_i$} node [below] at (1.75,0) {$t_f$}
        node [above] at (1,0) {$I$};
       \draw (.5,-.1) --++ (0,.2) (1.75,-.1) --++ (0,.2);
