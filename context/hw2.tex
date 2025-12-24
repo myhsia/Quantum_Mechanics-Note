@@ -1,2 +1,268 @@
 % !TeX root = ../main.tex
 
+\section{AQM Problem Set 2 -- 4}
+
+\begin{problem}[Coherent-state path integral]
+   Let's recall that a bosonic coherent state is defined as
+  \[
+    \ket|\alpha> = D(\alpha) \ket|0>, \quad
+    D(\alpha) \equiv \upe^{\alpha\hat a^\dagger-\alpha^*\hat a},
+  \]
+  where $D(\alpha)$ is the unitary displacement operator. The
+  set $\{\ket|\alpha>, \alpha \in \mathbb C\}$ forms an overcomplete basis of
+  the Hilbert space
+  \[
+    \int \frac{\d^2\alpha}{\pi} \ketbra|\alpha><\alpha| = \identity,
+  \]
+  where $\d^2\alpha = \d\Re\alpha \d\Im\alpha
+    = \frac{1}{2\iu}\d\bar\alpha \wedge \d\alpha$
+  ($\alpha = \Re\alpha + \iu\Im\alpha$, $\bar\alpha \equiv \alpha^*$), and
+  \[
+    \braket<\alpha|\beta>
+  = \upe^{-\frac12(\bar\alpha \alpha+\bar\beta\beta) + \bar\alpha \beta}
+  \]
+  We now continue to explore the use of coherent states to do path integral.
+  \begin{enumext*}[label = (\alph*)]
+    \item Consider a Hamiltonian $\hat H(\hat a^\dagger, \hat a; t)$ which is
+    normal ordered (namely, no $\hat a^\dagger$ appears to the right of $\hat a$
+    in a product), and the propagator
+    \[
+      \braket*\Big<\psi_f|\hat U(t_f, t_i)|\psi_i>
+    = \braket*\Big<\psi_f|\mathcal T \exp\ab\Big[
+        -\iu\int_{t_i}^{t_f} \d t \hat H(\hat a^\dagger, \hat a; t)]|\psi_i>
+    \]
+    from an initial state $\ket|\psi_i>$ to a final state $\ket|\psi_f>$, where
+    $\mathcal T$ is the time-ordering operator. Derive the coherent-state path
+    integral representation of the propagator by inserting resolutions of
+    identity in terms of $\{\ket|\alpha>\}$
+    (Hint: $\braket<\alpha|\hat H(\hat a^\dagger, \hat a; t)|\beta>
+      = H(\bar\alpha, \beta; t)\braket<\alpha|\beta>$ with the normal ordering).
+    Optional: compare the result with the canonical phase-space path
+    integral representation.
+    \item* (optional) Consider, again, the specific case of a driven
+    quantum harmonic oscillator with Hamiltonian
+    \[
+      \hat H = \frac{\hat p^2}{2m} + \frac12 m\omega^2 \hat x^2
+             + \mathcal E(t) \hat x.
+    \]
+    Compute the transition amplitude (as a function of time) from the
+    unperturbed ground state $\ket|0>$ to an unperturbed excited state
+    $\ket|n>$ by using the coherent-state path integral representation of the
+    propagator derived above. By treating the driving
+    term $\mathcal E(t) \hat x$ as a source term and the path integral as a
+    generating functional $Z|\mathcal E(t)|$, compute the two-point correlation
+    function $\braket<x(t_1)x(t_2)>$ and the four-point correlation function
+    $\braket<x(t_1)x(t_2)x(t_3)x(t_4)>$.
+  \end{enumext*}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+
+\begin{problem}[Spin path integral]
+  Let's now move on to do path integral with a single spin-$1/2$.
+  \begin{enumext}
+    \item Define spin coherent state as
+    \[
+      \ket|\alpha> = D(\alpha) \ket|\uparrow>, \quad
+      D(\alpha) \equiv \upe^{\alpha\hat J_--\alpha^*\hat J_+},
+    \]
+    where $\hat \sigma_z\ket|\uparrow> = \ket|\uparrow>$
+    (similarly, $\hat \sigma_z\ket|\downarrow> - -\ket|\downarrow>$)
+    and $\hat J_\pm = (\hat \sigma_x \pm \iu\hat \sigma_y)/2$ with
+    $\hat\sigma_{x,y,z}$ the Pauli operators. Show that
+    \[
+      \ket|\alpha> = \cos|\alpha| \ket|\uparrow>
+    + \sin|\alpha| \upe^{\iu\varphi_\alpha} \ket|\downarrow>\quad
+      (\alpha \equiv |\alpha| \upe^{\iu\varphi_\alpha}).
+    \]
+    From now on, we will relabel $\alpha$ by the unit normal vector $\bm n$ on
+    the Bloch sphere such that the spin coherent state becomes
+    \begin{multline*}
+      \ket|\bm n = (\sin\theta\cos\varphi, \sin\theta\sin\varphi, \cos\theta)>
+    \equiv \ket*|\alpha = \frac\theta2\upe^{\iu\varphi}>\\
+    = \cos\frac\theta2\ket|\uparrow>
+    + \sin\frac\theta2\upe^{\iu\varphi} \ket|\downarrow>, \quad
+      (\theta \in [0, \pi],\ \varphi \in [0, 2\pi]).
+    \end{multline*}
+    Show that
+    \[
+      \braket<\bm n|\bm B \cdot \hat{\bm \sigma}|\bm n> = \bm B \cdot \bm n,
+    \]
+    where $\hat{\bm \sigma} = (\hat \sigma_x, \hat \sigma_y, \hat \sigma_z)$
+    and $\bm B$ is an arbitrary real vector.
+    \item Show that
+    \[
+      \int \frac{\d^2\bm n}{2\pi} \ketbra|n><n| = \identity,
+    \]
+    where $\d^2\bm n = \sin\theta\d\theta\d\varphi$ is the area element on the
+    unit sphere. Further show that
+    \[
+      \braket<\bm n|\bm n'> = \ab(\frac{1 + \bm n \cdot \bm n'}{2})^{\frac12}
+      \upe^{\iu\Omega(\hat z, \bm n, \bm n')/2},
+    \]
+    where $\Omega(\hat z, \bm n, \bm n')$ is the solid angle subtended
+    by $(\hat z, \bm n, \bm n')$ such that
+    $\tan(\Omega(\hat z, \bm n, \bm n')/2) = \hat z \cdot (\bm n \times \bm n')/
+      (1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z)$.
+    \item Consider Hamiltonian $\hat H = \bm B \cdot \hat{\bm \sigma}$, derive
+    the following path integral representation of the partition function
+    $Z = \Tr\upe^{-\beta\hat H}$ by using the spin coherent states
+    \[
+      Z = \exp\ab\{-\frac\iu2 \Omega[\bm n(\tau)]
+        - \int_0^\beta \d\tau \bm B \cdot \bm n(\tau)\},
+    \]
+    where $\Omega[\bm n(\tau)] = \int_0^\beta \d \tau[1 - \cos\theta(\tau)]
+    \dot\varphi(\tau)$ is the solid angle subtended by the closed
+    path $\bm n(\tau)$ with $\bm n(0) = \bm n(\beta)$. Optional: From this
+    result, find the classical equation of motion for $\bm n$ of real time $t$.
+  \end{enumext}
+\end{problem}
+\begin{solution}
+  
+\end{solution}
+
+\begin{problem}[Discrete translational symmetry]
+  Consider the following Hamiltonian for a 1D system
+  \[
+    \hat H = \frac{\hbar^2}{2m}\hat k^2 + V\cos(2\pi\hat x/\lambda),
+  \]
+  where $\lambda$ is a positive real number.
+  \begin{enumext*}[label = (\alph*)]
+    \item Compute the commutator $[\hat k, \hat H]$. Is the eigenvalue
+    of $\hat k$ a good quantum number in this problem?
+    \item Define $\hat T_\lambda = \upe^{-\iu\lambda\hat k}$, show that
+    $\hat T_\lambda\ket|x>$ is an eigenstate of $\hat x$. What is the physical
+    meaning of $\hat T_\lambda$ as a transformation of quantum states? Compute
+    the comtator $[\hat T_\lambda, \hat H]$. Is the eigenvalue
+    of $\hat T_\lambda$ a good quantum number in this problem?
+    \item Find all engenstates of $\hat T_\lambda$ with eigenvalue $1$ and $-1$,
+    respectively. Write down the projected Hamiltonian in these two
+    fixed $\hat T_\lambda$-eigenvalue sub-Hilbert-spaces, respectively.
+    \item* (optional) We will call the $\hat T_\lambda$-eigenvalue $1$
+    (resp., $-1$) subspace the $k = 0$ (resp., $k = \pi$) subspace. To the
+    second order in $V$ as perturbation, compute the approximate energy and the
+    corresponding wave-function of the lowest-energy eigenstate of the
+    Hamiltonian in the $k = 0$ space, and compute the first excitation gap
+    (i.e. the energy difference between the lowest and the second-lowest energy
+    eigenstates of the Hamiltonian) in the $k = \pi$ space.
+  \end{enumext*}
+\end{problem}
+\begin{solution}
+  
+\end{solution}
+
+\begin{problem}[Representation of $D_3$]
+  Let's extend the example used in our classes by including two
+  flavors ($s = \pm$) on each vertices of the equilateral triangle, such that
+  the Hilbert space becomes $V \equiv \operatorname{span}
+    (\{\ket|i = 9,1,2; s = \pm>\})$. The action of the two generators of the
+  dihedral group $D_3 = \braket<R,\rho|R^3 = \rho^2 = (\rho R)^2 = e>$ on this
+  Hilbert space is given by
+  \[
+    \hat R\ket|i, s> = \ket|i + 1, s>, \quad
+    \hat \rho \ket|i, s> = \ket|-i, -s>.
+  \]
+  Here, $\hat R$ and $\hat \rho$ are unitary operators, and integers such as
+  $i - 1$ and $-i$ are understood to be modulo $3$.
+  \begin{enumext}
+    \item Check that as operators, $\hat R^3 = \hat\rho^2
+    = (\hat \rho\hat R)^2 = \identity$, such that they indeed generate a
+    representation of $D_3$.
+    \item Derive the most general form of the Hamiltonian $\hat H$ on $V$ which
+    is invariant under the action of $D_3$, i.e., $[\hat H, \hat R]
+    = [\hat H, \rho] = 0$. How many independent (real) parameters does it have?
+    \item Consider the following Hamiltonian
+    \[
+      \hat H = t(\hat R_+ \oplus \hat R_-^2)
+             + t^*(\hat R_+^2 \oplus \hat R_-)
+             + s(\hat \rho_0 + \hat \rho_1 + \hat \rho_2),
+    \]
+    where $\hat R_{s=\pm}$ is the restriction of $\hat R$ on the
+    subspace $V_s \equiv \operatorname{span}(\{\ket|i = 0,1,2;s>\})$
+    (such that $\hat R = \hat R_+ \oplus \hat R_-$);
+    $\hat \rho_{i=0,1,2} \equiv \hat\rho \hat R^i$ is the reflection with
+    respect to the $i$-th vertex; $t$ is a complex parameter and $s$ is a real
+    parameter. Check that this Hamiltonian is invariant under the action
+    of $D_3$. Further check that the three parts of the Hamiltonian: $\hat H_R
+    \equiv t(\hat R_+ \oplus \hat R_-^2)$, $\hat H_R^\dagger
+    = t^*(\hat R_+^2 \oplus \hat R_-)$
+    and $\hat H_\rho \equiv s(\hat \rho_0 + \hat \rho_1 + \hat \rho_2)$ all
+    commute with each other: $[\hat H_R, \hat H_R^\dagger] = 0$,
+    $[\hat H_R, \hat H_\rho] = 0$, and $[\hat H_R^\dagger, \hat H_\rho] = 0$.
+    Use this preparation to solve the eigensystem of $\hat H$ exactly. Analyze
+    the result based on the irreps of $D_3$.
+  \end{enumext}
+\end{problem}
+\begin{solution}
+  
+\end{solution}
+
+\begin{problem}[Angular momentum]
+  Let $\bm J = (J_x, J_y, J_z)$ be an angular momentum operator, where $J_x$,
+  $J_y$, $J_z$, and hence $J_\pm \equiv J_x \pm \iu J_y$, satisfy the usual
+  angular-momentum commutation relations.
+  \begin{enumext*}[label = (\alph*)]
+    \item Show that $\bm J^2 = J_z^2 + J_+J_- - \hbar J_z$.
+    \item Starting from $\bm J^2\ket|j, m> = \hbar^2 j(j + 1) \ket|j, m>$
+    and $J_z\ket|j, m> = \hbar m \ket|j, m>$, and making use of the above
+    equation, derive the coefficient $c_m$ defined
+    in $J_-\ket|j, m> = \hbar c_m\ket|j, m - 1>$.
+    \item Based on the above result, write down the matrix representation of
+    $J_x$ and $J_y$ in the $\{\ket|j, m>\}$ basis for the spin-$3/2$
+    (namely, $j = 3/2$) case.
+    \item Consider the combination of two degrees of freedom: An $l = 1$ orbital
+    (i.e., a $p$-orbital) and an $s = 1/2$ spin, write down the new bases
+    (in terms of the old ones) for the combined system decomposed according to
+    the total angular momentum $j$.
+    \item* (optional) The time-reversal operator in the $\{\ket|j, m>\}$ basis
+    is given by $\mathcal T = \upe^{\iu\pi J_y/\hbar} K$, where $K$ is the
+    complex conjugation operator. Show that $\mathcal T^2 = (-1)^{2j}$.
+  \end{enumext*}
+\end{problem}
+\begin{solution}
+  
+\end{solution}
+
+\begin{problem}[Two-site Hubbard model]
+  Consider the Fock space for two sites and two spin-$1/2$ states on each site,
+  generated by $\{c_{1\uparrow}^\dagger, c_{1\downarrow}^\dagger,
+  c_{2\uparrow}^\dagger, c_{2\downarrow}^\dagger\}$.
+  \begin{enumext*}[label = (\alph*)]
+    \item What is the dimension of this Fock space? Write down the basis for
+    this Fock space grouped by the total particle number.
+    \item Compute the full spectrum of the following Hamiltonian (assuming all
+    parameters to be real)
+    \[
+      H = \sum_{\substack{i=1,2\\s=\uparrow,\downarrow}}
+          \epsilon c_{is}^\dagger c_{is}
+        - \sum_{s=\uparrow,\downarrow}(tc_{1s}^\dagger c_{2s} + \text{H.c.})
+        + \sum_{i=1,2} Uc_{i\uparrow}^\dagger c_{i\uparrow}
+                        c_{i\downarrow}^\dagger c_{i\downarrow}.
+    \]
+    (Hint: Find conserved particle numbers and compute in each
+    fixed-particle-number sector separately.)
+    \item Further assuming $\epsilon < 0$ and $U \gg (-\epsilon) > t > 0$, find
+    the ground state and the first excited state(s) of the Hamiltonian, and
+    compute the entangelement entropy between site 1 and site 2 for each of
+    these states.
+    \item* (optional) In the subspace spanned by
+    $(\hat c_{2\uparrow}^\dagger   \hat c_{1\uparrow}^\dagger,
+      \hat c_{2\downarrow}^\dagger \hat c_{1\downarrow}^\dagger,
+      \hat c_{2\downarrow}^\dagger \hat d_{1\uparrow}^\dagger,
+      \hat c_{2\uparrow}^\dagger   \hat c_{1\downarrow}^\dagger) \ket|0>$,
+    compute the spectrum and find the ground state (for both $J > 0$ and $J < 0$
+    cases) of the following Hamiltonian
+    \[
+      \hat H_\text{ex} = \sum_{\alpha=x,y,z} J
+        (\bm c_1^\dagger \sigma_\alpha \bm c_1)
+        (\bm c_2^\dagger \sigma_\alpha \bm c_2),
+    \]
+    where $\bm c_{i=1,2}^\dagger \equiv (c_{i\uparrow}^\dagger,
+    c_{i,\downarrow}^\dagger)$, and $\sigma_{\alpha=x,y,z}$ are Pauli matrices.
+    Compare these results with those obtained in part (c).
+  \end{enumext*}
+\end{problem}
+\begin{solution}
+  
+\end{solution}
