@@ -392,7 +392,8 @@ symmetry $\hat\Omega_\epsilon$
 The equation of the rotation operator
 \begin{equation}
   \hat R_
-    {(\underset{\text{axis}}{\bm e_a}, \underset{\text{angle}}{\vphantom{\bm e_a}\epsilon})} =
+    {(\underset{\text{axis}}{\bm e_a},
+  \underset{\text{angle}}{\vphantom{\bm e_a}\epsilon})} =
   \ket|\bm r + \epsilon \bm e_a \times \bm r>.
 \end{equation}
 It change the eigenstate from $\ket|\bm r>$
@@ -408,13 +409,15 @@ Consider each component of the vector $\hat{\bm r}$
 = \iu [(e_a)_2\hat r_3 - (e_a)_3\hat r_2] \hat k_1 + (312) + (123)
 = (\bm e_a \times \hat{\bm r}) \times \hat{\bm k} = \bm e_a \cdot \hat{\bm L}
 \]
-where $\hat g_{e_a} = \bm e_a \cdot \hat{\bm r}$, $\hat L \equiv \hat{\bm r} \times \hat{\bm k}$.
+where $\hat g_{e_a} = \bm e_a \cdot \hat{\bm r}$,
+$\hat L \equiv \hat{\bm r} \times \hat{\bm k}$.
 
 Then, we take the Infinitesimal (single-parameter)
 \[
   \hat R_{(\bm e_a, \theta)} = \hat R_{(\bm e_i, \frac\theta N)}^N
 = \ab(1- \iu\frac aN \hat g_T)^N = \upe^{-\iu \theta \bm e_a \cdot \hat{\bm L}}
-\xlongequal{\theta \bm e_a \equiv \bm\theta} \upe^{-\iu\theta \cdot \bm{\hat L} = \sum_{j = 1,2,3} \theta_j \hat L_j}
+\xlongequal{\theta \bm e_a \equiv \bm\theta}
+  \upe^{-\iu\theta \cdot \bm{\hat L} = \sum_{j = 1,2,3} \theta_j \hat L_j}
 \]
 
 \paragraph{Translation Symmetry}
@@ -517,11 +520,13 @@ and we have the map
 The transfromation in coordinate space induces the transformation in
 Hilbert space. The generator
 \[
-  \hat{\bm g}_{\hat R_{\bm\theta}} = \hat{\bm L} = (\hat L_1, \hat L_2, \hat L_3)
+  \hat{\bm g}_{\hat R_{\bm\theta}} = \hat{\bm L}
+= (\hat L_1, \hat L_2, \hat L_3)
 \]
 and the commutators
 \begin{align}
-  \hat T_{a_y} \hat T_{a_x} \ket|\bm r> & = \ket|\bm r + a_x\hat x + a_y \hat y>,\\
+  \hat T_{a_y} \hat T_{a_x} \ket|\bm r> &
+= \ket|\bm r + a_x\hat x + a_y \hat y>,\\
   \hat R_{\theta_y} \hat R_{\theta_x} \ket|\bm r> &
 = \ket|\hat R_{\theta_y} \hat R_{\theta_x} \bm r>
 \neq \ket|\hat R_{\theta_x} \hat R_{\theta_y} \bm r>
@@ -550,7 +555,8 @@ So, there are three equations.
   also for $BC \to BCD$.
   Consider the BCH identity
   \[
-    \upe^AB\upe^{-A} = B + [A, B] + \frac1{2!}[A,B]_2 + \cdots + \frac1{n!}[A,  B]_n
+    \upe^AB\upe^{-A} = B + [A, B] + \frac1{2!}[A,B]_2 + \cdots
+  + \frac1{n!}[A,  B]_n
   \]
   where $[A, B]_n = [A, [A, \cdots [A, B \underset n{]]]} \mapsto \pdif A^n B$
 \end{remark}
@@ -631,7 +637,8 @@ $q$ is still a function of time. Then,
         node [right] {$q(t)$};
       \draw [yshift = .5cm]
         (-.5,.5) to[bend left = 10] (0,1) to[bend right = 10]
-        (1,.8)   to[bend left = 10] (2,1.5) to[bend right = 10] (3,1) node [right] {$q_\epsilon(t)$};
+        (1,.8)   to[bend left = 10] (2,1.5) to[bend right = 10] (3,1)
+       node [right] {$q_\epsilon(t)$};
     \end{tikzpicture}
   \end{center}
 \end{example}
@@ -657,7 +664,8 @@ $q$ is still a function of time. Then,
         node [right] {$q(t)$};
       \draw [xshift = .5cm]
         (-.5,.5) to[bend left = 10] (0,1) to[bend right = 10]
-        (1,.8)   to[bend left = 10] (2,1.5) to[bend right = 10] (3,1) node [right] {$q_\epsilon(t)$};
+        (1,.8)   to[bend left = 10] (2,1.5) to[bend right = 10] (3,1)
+       node [right] {$q_\epsilon(t)$};
   \end{tikzpicture}
   \end{center}
 \end{example}
@@ -813,9 +821,11 @@ Starting from
 \begin{example}\leavevmode
   \begin{enumext}
     \item Translation $h_{\bm a} (\bm r) = \bm r + \bm r$
-    \item Reflection $h_{\bm e}(\bm r) = \bm r - 2\bm r_\parallel$ (Figure required).
+    \item Reflection $h_{\bm e}(\bm r) = \bm r - 2\bm r_\parallel$
+          (Figure required).
     \item Rotation $h_{\bm\theta = (\bm e_a, \theta)}(\bm r)
-    = \bm r_\parallel + \cos\theta\bm r_\bot + \sin\theta(\bm e_a \times \bm r_\bot)$.
+    = \bm r_\parallel + \cos\theta\bm r_\bot
+    + \sin\theta(\bm e_a \times \bm r_\bot)$.
   \end{enumext}
   For an arbitary state $\ket|\psi>$, how the operator act on the arbitary state
   \[
@@ -992,7 +1002,8 @@ For Abelian group, we have the commutative generator
 \end{example}
 Cayley Table (Group Multiplication Table)
 \[
-  \{e,\ R,\ R^2, \rho_0, \rho_1,\ \rho_2\} = \braket<\underbrace{R,\rho = \rho_0}_\text{generators}|
+  \{e,\ R,\ R^2, \rho_0, \rho_1,\ \rho_2\}
+= \braket<\underbrace{R,\rho = \rho_0}_\text{generators}|
   \underbrace{R^3 = \rho^2 = e, \rho R = R^2\rho}_\text{relations}>
 \]
 where $R^{n_1}$, $\rho^{m_1}$, $R^{n_2}$, $\rho_{m_2}$
@@ -1336,7 +1347,8 @@ We can always construct another state with a linear combination
 \]
 Then,
 \[
-  \ket|\phi> \propto \hat i_\pm\ket|\phi> = a_\pm\ket|\chi> + b\upe^{\iu\theta}\ket|\psi>
+  \ket|\phi> \propto \hat i_\pm\ket|\phi>
+= a_\pm\ket|\chi> + b\upe^{\iu\theta}\ket|\psi>
 \]
 Rearrange it
 \[
@@ -1639,7 +1651,8 @@ The SO(3) group is rotations in 3D, SU(2) group: innerspace.
     \item $[\frac{\sigma_1}{2}, \frac{\sigma_2}{2}] = \iu\frac{\sigma_3}{2}$
     \item $[\hat L_1, \hat L_2] = \iu\hat L_3$
     \item $[j_a, j_b] = \iu\epsilon_{abc} j_c$
-    \item $[\frac{\sigma_a}{2}, \frac{\sigma_b}{2}] = \iu\epsilon_{abc} \frac{\sigma_c}{2}$
+    \item $[\frac{\sigma_a}{2}, \frac{\sigma_b}{2}]
+        = \iu\epsilon_{abc} \frac{\sigma_c}{2}$
     \item $[\hat L_a, \hat L_b] = \iu\epsilon_{abc} \hat L_c$.
   \end{enumext}
 \end{definition}
@@ -2209,3 +2222,168 @@ particle state.
   \]
 \end{example}
 Change of basis: correlation + exchange.
+
+\section{Entanglement \& Density Operator}
+
+\subsection{Entanglement}
+
+Stands for some excess correlation.
+Two parts (Hilbert spaces): $\mathcal H_A \otimes \mathcal H_B$.
+\begin{enumext}
+  \item A: measurement, devices: $A_1 \to \{\lambda_{A_1}\}$,
+  $A_2 \to \{\lambda_{A_2}\}$.
+  \item B: Measured values.
+  $B_1 \to \{\lambda_{B_1}\}$, $B_2 \to \{\lambda_{B_2}\}$.
+\end{enumext}
+The correlator
+\[
+  \braket<A_iB_j> = \frac1N \sum_{n=1}^N \lambda_A^{(n)} \lambda_{B_j}^{(n)}.
+\]
+where $N \to \infty$, \# of samplings. The two labels $A_{1,2}$ and $B_{1,2}$
+correspond to $\sigma_z$ and $\sigma_x$,
+then $A_{1,2}$, $B_{1,2} \to \{+1, -1\}$.
+\begin{multline*}
+  C_{AB} = \braket<A_1B_1> + \braket<A_1B_2> + \braket<A_2B_1>
+         - \braket<A_2B_2>
+  = \ab*<A_1(B_1 + B_2)> + \braket<A_2(B_2 - B_1)>\\
+  = \ab*<|B_1 + B_2| + |B_2 - B_1|>
+  \leq \ab*<|B_1 + B_2|> + \ab*<|B_1 - B_2|> = 2
+\end{multline*}
+called the classical bound.
+In quantum mechanics
+\[
+  \begin{cases}
+    \hat A_1 = \sigma_x^{(a)},\\
+    \hat A_2 = \sigma_z^{(a)},
+  \end{cases},\quad
+  \begin{cases}
+    \hat B_1 = -\frac{\sigma_z^{(b)} + \sigma_x^{(b)}}{\sqrt2},\\
+    \hat B_2 = \frac{\sigma_z^{(b)} - \sigma_x^{(b)}}{\sqrt2}.
+  \end{cases}
+\]
+Then, $\ket|\psi_{ab}> = \frac{\ket|\uparrow_a\downarrow_b>
+- \ket|\downarrow_a\uparrow_b>}{\sqrt2}$.
+
+\paragraph{Quiz}
+\begin{multline*}
+  C_{AB} = \braket<\hat A_1\hat B_1> + \braket<\hat A_1\hat B_2>
+  + \braket<\hat A_2\hat B_1> - \braket<\hat A_2\hat B_2>
+= \braket<\hat A_1(\hat B_1 + \hat B_2)> +
+  \braket<\hat A_2(\hat B_1 - \hat B_2)>\\
+= -\sqrt2(\braket<\sigma_x^{(a)}\sigma_x^{(b)}>
+        + \braket<\sigma_z^{(x)}\sigma_z^{(b)}>) = 2\sqrt2 > 2.
+\end{multline*}
+
+\subsection{Entanglement Entropy}
+
+Next, starting from a tensor state
+$\ket|\chi> = \ket|\uparrow>_a \otimes \ket|\uparrow>_b$. Then
+\[
+  \braket<\chi|\hat P_a\otimes \hat Q_b|\chi>
+= \braket<\chi_a|\hat P_a|\chi_a> \braket<\chi_b|\hat Q_b|\chi_b>
+= \braket<\hat P_a> \braket<\hat Q_b>
+\]
+and $C_{AB} \leq |\braket<\hat B_1 + \hat B_2>| + |\braket<\hat B_1 - \hat B_2>|
+  \leq 2\braket*<\frac{\hat \sigma_x + \hat \sigma_z}{\sqrt2}>$.
+
+Put this into a genetic framework. Usually
+\[
+  \frac12(\ket|\uparrow\uparrow> + \ket|\uparrow\downarrow>
+  + \ket|\downarrow\uparrow> + \ket|\downarrow\downarrow>)
+\]
+can be separated into
+\[
+  \frac12(\ket|\uparrow> + \ket|\downarrow>) \otimes
+         (\ket|\downarrow> + \ket|\uparrow>)
+\]
+The Schmidt Decomposition allows us
+\[
+  \ket|\psi_{ab}> = \sum_{\alpha\beta} \Psi_{\alpha\beta}
+    \ket|\alpha> \otimes \ket|\beta>.
+\]
+The singular value decomposition
+If we take a matrix $M$, it can be $M_{d_a \times d_b}$.
+Any quantum state can be expanded with $d_a \times d_b$
+coefficients (components). Then, this matrix can be singular value composition
+\[
+  \begin{pNiceMatrix}[first-col, last-row]
+    \{\ket|a_i>\} & M_{d_a\times d_b}\\
+    & \{\ket|b_j>\}
+  \end{pNiceMatrix} = USV^\dagger
+= \sum_{\lambda_k>0} \lambda_k u_k v_k^\dagger
+\]
+$S$ will be a diagonal matrix $\pdiagmat[empty={}]{\ddots, \lambda_k, \ddots}$,
+$U$ will be a unitary matrix with dimension $d_a \times d_a$;
+$V$ will be a unitary matrix with dimension $d_b \times d_b$.
+\[
+  U^\dagger U = V^\dagger V = \identity.
+\]
+Any combine
+$\ket|\psi_{ab}> = \sum_k \lambda_k \ket|u_k^{(a)}> \otimes \ket|v_k^{(b)}>$.
+The identity
+\[
+  1 = \braket<\psi_{ab}|\psi_{ab}> = \sum_k \lambda_k^2 = p_k.
+\]
+If there $\exists i$, $\lambda_i = 1$ and $\lambda_{j\neq i} = 0$, means
+there must be one $\lambda_i = 1$ in the diagonal. Then, if one chose different
+basis from $\mathcal H_a$ and $\mathcal H_b$, then $M \to \tilde M$
+\[
+  M = USV^\dagger,\quad \tilde M = R_a M R_b^\dagger = (R_aU) S (R_bV^\dagger)
+\]
+It just $U \to \tilde U = R_aU$, same for $V$. But the singular values $S$ are
+the same. In other words, the singular values do not depend on the basis.
+
+\paragraph{Reduced Density Operator}
+
+If we do nothing to $v_k$, then $(p_k = \lambda_k^2, \ket|u_k^{(a)}>)$.
+\[
+  \rho_a = \sum_n p_k \ketbra|u_k^{(a)}><u_k^{(a)}|.
+\]
+So, mixed states are contracted with the pure states: $\rho_a^2 = \rho_a$
+\[
+  \rho_a^2 = \sum_k p_k^2 \ketbra|u_k><u_k|.
+\]
+For different $k$, $u_k$ are orthonormal.
+
+\subsection{Two-level system}
+
+The Hilbert space is simple
+\[
+  \mathcal H_{a,b} = \operatorname{span}(\{\ket|\uparrow>, \ket|\downarrow>\}).
+\]
+Now, consider the canonical form of $\ket|\psi_{ab}> \in \mathcal H_a \otimes
+\mathcal H_b$. Then,
+$M_{2\times 2} = U\pdiagmat[empty = {}]{\lambda_1, \lambda_2} V^\dagger$
+with $\lambda_1^2 + \lambda_2^2 = 1$. We also know that
+\[
+  \ket|\psi_{ab}> = \sum_{i=1,2} \lambda_i \ket|\qquad>:\
+  \ket|u_1v_1> =: \ket|00>,\quad \ket|u_2v_2> =: \ket|11>
+\]
+If $\lambda = \lambda_1$, then $\lambda_2 = \sqrt{1 - \lambda_1^2}$. Then
+\[
+  \ket|\psi_{ab}> = \lambda\ket|00> + \sqrt{1 - \lambda^2}\ket|11>.
+\]
+Hence
+\[
+  \rho_a = \lambda^2 \ketbra|0><0| + (1 - \lambda^2) \ketbra|1><1|, \quad
+  \mathcal B_{\max} = 2\sqrt{1 + 4p(1 - p)}\quad 0 \leq p \leq 1.
+\]
+The entropy
+\[
+  S = -p\ln p - (1 - p)\ln(1 - p)
+    = -\int \d x p(x) \ln p(x) \to -\sum_{i=1}^N p_i \ln p_i
+\]
+Taking the cases $p_i = \frac1N$, or $p_i = \delta_{i}$.
+Then, $S = \ln N$, or $S = 0$.
+
+\noindent\rule\linewidth{.5pt}
+
+For the H.S. maps to $\{\hat \rho\}$ with $V_{op}$, consider the
+vectors, operators, transformations, EOM.
+
+Unitarity: CPTP: Completely positive and trace-preserving.
+The unitary transformation becomes Kraus' map (quantum channels).
+E.g., the map $\phi:\ \hat\rho \mapsto \sum_i K_i \rho K_i^\dagger$
+with the coondition $\sum_i K_i^\dagger K_i = \identity$.
+$K_i$ is called the Kraus operator, with $V_{op}\to V_{op}$,
+$\rho = \ketbra|\psi><\psi|$ and $U\rho U^\dagger = \ketbra|U\psi><U\psi|$.
