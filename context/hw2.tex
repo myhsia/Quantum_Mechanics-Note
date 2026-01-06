@@ -55,77 +55,585 @@
     $\braket<x(t_1)x(t_2)x(t_3)x(t_4)>$.
   \end{enumext*}
 \end{problem}
-\begin{solution}
-
-\end{solution}
-
-\begin{problem}[Spin path integral]
-  Let's now move on to do path integral with a single spin-$1/2$.
+\begin{solution}\leavevmode
   \begin{enumext}
-    \item Define spin coherent state as
+    \item Slicing the time range $[t_i, t_f]$ into $N$ pieces, then
+    the propagator can be written as a sum (product) of small time
     \[
-      \ket|\alpha> = D(\alpha) \ket|\uparrow>, \quad
-      D(\alpha) \equiv \upe^{\alpha\hat J_--\alpha^*\hat J_+},
+      \mathcal K = \braket*\Big<\psi_f|\hat U(t_f, t_i)|\psi_i>
+    = \braket*\Big<\psi_f|\prod_{k=0}^{N-1}
+        \exp[-\iu \epsilon \hat H(\hat a^\dagger, \hat a; t_k)]|\psi_i>
     \]
-    where $\hat \sigma_z\ket|\uparrow> = \ket|\uparrow>$
-    (similarly, $\hat \sigma_z\ket|\downarrow> - -\ket|\downarrow>$)
-    and $\hat J_\pm = (\hat \sigma_x \pm \iu\hat \sigma_y)/2$ with
-    $\hat\sigma_{x,y,z}$ the Pauli operators. Show that
+    where $\epsilon = (t_f - t_i)/N$. Inserting the identity $\identity
+    = \int \frac{\d^2\alpha}{\pi} \ketbra|\alpha><\alpha|$ in the gaps between
+    every two exponential terms with the symmetric
+    condition $\alpha_0 = \psi_i$, $\alpha_N = \psi_f$
     \[
-      \ket|\alpha> = \cos|\alpha| \ket|\uparrow>
-    + \sin|\alpha| \upe^{\iu\varphi_\alpha} \ket|\downarrow>\quad
-      (\alpha \equiv |\alpha| \upe^{\iu\varphi_\alpha}).
+      \mathcal K =
+      \underbrace{\int \cdots \int}_\text{$N - 1$ terms}
+      \prod_{k=1}^{N-1} \frac{\d^2\alpha_k}{\pi}
+      \braket<\psi_f|\upe^{-\iu\epsilon\hat H_{N-1}}|\alpha_{N-1}>
+      \braket<\alpha_{N-1}| \cdots |\alpha_1>
+      \braket<\alpha_1|\upe^{-\iu\epsilon\hat H_0}|\psi_i>
     \]
-    From now on, we will relabel $\alpha$ by the unit normal vector $\bm n$ on
-    the Bloch sphere such that the spin coherent state becomes
+    Using the hint in problem, for an arbitrary overlap
     \begin{multline*}
-      \ket|\bm n = (\sin\theta\cos\varphi, \sin\theta\sin\varphi, \cos\theta)>
-    \equiv \ket*|\alpha = \frac\theta2\upe^{\iu\varphi}>\\
-    = \cos\frac\theta2\ket|\uparrow>
-    + \sin\frac\theta2\upe^{\iu\varphi} \ket|\downarrow>, \quad
-      (\theta \in [0, \pi],\ \varphi \in [0, 2\pi]).
+      \braket<\alpha_k|\upe^{-\iu\epsilon\hat H_{k-1}}|\alpha_{k-1}>
+    = \upe^{-\iu\epsilon H} \braket<\alpha_k|\alpha_{k-1}>\\
+    = \exp\ab[-\iu\epsilon H(\bar\alpha_k, \alpha_{k-1}, t_k)
+      -\frac12(\bar\alpha_k \alpha_k + \bar\alpha_{k-1} \alpha_{k-1})
+      +\bar\alpha_k \alpha_{k-1}]
     \end{multline*}
-    Show that
+    To calculate the products of overlaps, sum the exponents first.
+    \begin{enumext}
+      \item The second term.
+      \[
+        -\frac12\sum_{k=1}^N (\bar\alpha_k \alpha_k
+          + \bar\alpha_{k-1}\alpha_{k-1})
+      = -\frac12(|\alpha_N|^2 + |\alpha_0|^2)
+      - \sum_{k=1}^{N-1} |\alpha_k|^2
+      \]
+      \item The third term.
+      \[
+        \sum_{k=1}^N \bar\alpha_k \alpha_{k-1}
+      = \sum_{k=1}^N \bar\alpha_k (\alpha_k - \alpha_k + \alpha_{k-1})
+      = \sum_{k=1}^N |\alpha_k|^2 - \sum_{k=1}^N (\alpha_k - \alpha_{k-1}).
+      \]
+    \end{enumext}
+    Combining the first, the second, and the third term, one will obtain the sum
+    \begin{align*}
+      S_\text{overlap} & = -\frac12(|\alpha_N|^2 + |\alpha_0|^2)
+        - \sum_{k=1}^{N-1} |\alpha_k|^2 + \sum_{k=1}^N |\alpha_k|^2
+        - \sum_{k=1}^N \bar\alpha_k (\alpha_k - \alpha_{k-1})
+        - \iu \sum_{k=1}^N H(\bar\alpha_k, \alpha_{k-1}, t_k) \epsilon\\
+    & = \frac12(|\alpha_N|^2 - |\alpha_0|^2)
+        - \sum_{k=1}^N \epsilon \dot\alpha_k
+        - \iu \sum_{k=1}^N H(\bar\alpha_k, \alpha_{k-1}, t_k) \epsilon,
+    \end{align*}
+    where the first-order Taylor
+    approximation $\alpha_k - \alpha_{k-1} = \epsilon \dot\alpha$ is used.
+    In the continuum limit, $\epsilon \to \d t$, the sum can be written
+    as integral
+    \begin{multline*}
+      S_\text{overlap} = \frac12(|\alpha_N|^2 - |\alpha_0|^2)
+        - \int_{t_i}^{t_f} \d t \bar\alpha \dot\alpha
+        - \iu \int_{t_i}^{t_f} \d t H(\bar\alpha, \alpha, t)\\
+      = \frac12(|\alpha_N|^2 - |\alpha_0|^2) + \iu \int_{t_i}^{t_f} \d t
+          [\iu \bar\alpha \dot\alpha - H(\bar\alpha, \alpha, t)]
+    \end{multline*}
+    Substituting it into the propagator
     \[
-      \braket<\bm n|\bm B \cdot \hat{\bm \sigma}|\bm n> = \bm B \cdot \bm n,
+      \mathcal K = \int_{\alpha(t_i)=\alpha_0}^{\alpha(t_f)=\alpha_N}
+      \mathcal D^2[\alpha]
+      \exp\ab\{\frac12(|\alpha_N|^2 - |\alpha_0|^2) + \iu \int_{t_i}^{t_f} \d t
+            [\iu \bar\alpha \dot\alpha - H(\bar\alpha, \alpha, t)]\},
     \]
-    where $\hat{\bm \sigma} = (\hat \sigma_x, \hat \sigma_y, \hat \sigma_z)$
-    and $\bm B$ is an arbitrary real vector.
-    \item Show that
+    where $\mathcal D^2[\alpha]$ denotes the
+    measure $\prod_{k=1}^{N-1} \frac{\d^2\alpha_k}{\pi}$ in the continuum limit.
+
+    For the canonical phase-space PI rep., taking $\alpha = x + \iu p$, then
+    $\alpha \dot\alpha = x\dot x + p\dot p - x\dot p + p\dot x$,
+    substituting into $\iu\bar\alpha \dot\alpha - H$ will reproduce the
+    Lagrangian $p\dot x - H \equiv \mathcal L$, and so yields the usual
+    phase-space PI.
+    \item Using the creation and annihilation operators to rewrite
+    the Hamiltonian
     \[
-      \int \frac{\d^2\bm n}{2\pi} \ketbra|n><n| = \identity,
+      \hat H = \omega\ab(\hat a^\dagger \hat a + \frac12)
+        + \lambda \mathcal E(t) (\hat a + \hat a^\dagger),
+      \qq{where} \lambda = \sqrt{\frac1{2m\omega}}.
     \]
-    where $\d^2\bm n = \sin\theta\d\theta\d\varphi$ is the area element on the
-    unit sphere. Further show that
-    \[
-      \braket<\bm n|\bm n'> = \ab(\frac{1 + \bm n \cdot \bm n'}{2})^{\frac12}
-      \upe^{\iu\Omega(\hat z, \bm n, \bm n')/2},
-    \]
-    where $\Omega(\hat z, \bm n, \bm n')$ is the solid angle subtended
-    by $(\hat z, \bm n, \bm n')$ such that
-    $\tan(\Omega(\hat z, \bm n, \bm n')/2) = \hat z \cdot (\bm n \times \bm n')/
-      (1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z)$.
-    \item Consider Hamiltonian $\hat H = \bm B \cdot \hat{\bm \sigma}$, derive
-    the following path integral representation of the partition function
-    $Z = \Tr\upe^{-\beta\hat H}$ by using the spin coherent states
-    \[
-      Z = \exp\ab\{-\frac\iu2 \Omega[\bm n(\tau)]
-        - \int_0^\beta \d\tau \bm B \cdot \bm n(\tau)\},
-    \]
-    where $\Omega[\bm n(\tau)] = \int_0^\beta \d \tau[1 - \cos\theta(\tau)]
-    \dot\varphi(\tau)$ is the solid angle subtended by the closed
-    path $\bm n(\tau)$ with $\bm n(0) = \bm n(\beta)$. Optional: From this
-    result, find the classical equation of motion for $\bm n$ of real time $t$.
   \end{enumext}
-\end{problem}
-\begin{solution}
-  
 \end{solution}
+
+\clearpage
+
+% \begin{problem}[Spin path integral]
+%   Let's now move on to do path integral with a single spin-$1/2$.
+%   \begin{enumext}
+%     \item Define spin coherent state as
+%     \[
+%       \ket|\alpha> = D(\alpha) \ket|\uparrow>, \quad
+%       D(\alpha) \equiv \upe^{\alpha\hat J_--\alpha^*\hat J_+},
+%     \]
+%     where $\hat \sigma_z\ket|\uparrow> = \ket|\uparrow>$
+%     (similarly, $\hat \sigma_z\ket|\downarrow> = -\ket|\downarrow>$)
+%     and $\hat J_\pm = (\hat \sigma_x \pm \iu\hat \sigma_y)/2$ with
+%     $\hat\sigma_{x,y,z}$ the Pauli operators. Show that
+%     \[
+%       \ket|\alpha> = \cos|\alpha| \ket|\uparrow>
+%     + \sin|\alpha| \upe^{\iu\varphi_\alpha} \ket|\downarrow>\quad
+%       (\alpha \equiv |\alpha| \upe^{\iu\varphi_\alpha}).
+%     \]
+%     From now on, we will relabel $\alpha$ by the unit normal vector $\bm n$ on
+%     the Bloch sphere such that the spin coherent state becomes
+%     \begin{multline*}
+%       \ket|\bm n = (\sin\theta\cos\varphi, \sin\theta\sin\varphi, \cos\theta)>
+%     \equiv \ket*|\alpha = \frac\theta2\upe^{\iu\varphi}>\\
+%     = \cos\frac\theta2\ket|\uparrow>
+%     + \sin\frac\theta2\upe^{\iu\varphi} \ket|\downarrow>, \quad
+%       (\theta \in [0, \pi],\ \varphi \in [0, 2\pi]).
+%     \end{multline*}
+%     Show that
+%     \[
+%       \braket<\bm n|\bm B \cdot \hat{\bm \sigma}|\bm n> = \bm B \cdot \bm n,
+%     \]
+%     where $\hat{\bm \sigma} = (\hat \sigma_x, \hat \sigma_y, \hat \sigma_z)$
+%     and $\bm B$ is an arbitrary real vector.
+%     \item Show that
+%     \[
+%       \int \frac{\d^2\bm n}{2\pi} \ketbra|n><n| = \identity,
+%     \]
+%     where $\d^2\bm n = \sin\theta\d\theta\d\varphi$ is the area element on the
+%     unit sphere. Further show that
+%     \[
+%       \braket<\bm n|\bm n'> = \ab(\frac{1 + \bm n \cdot \bm n'}{2})^{\frac12}
+%       \upe^{\iu\Omega(\hat z, \bm n, \bm n')/2},
+%     \]
+%     where $\Omega(\hat z, \bm n, \bm n')$ is the solid angle subtended
+%     by $(\hat z, \bm n, \bm n')$ such that
+%     $\tan(\Omega(\hat z, \bm n, \bm n')/2) = \hat z \cdot (\bm n \times \bm n')/
+%       (1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z)$.
+%     \item Consider Hamiltonian $\hat H = \bm B \cdot \hat{\bm \sigma}$, derive
+%     the following path integral representation of the partition function
+%     $Z = \Tr\upe^{-\beta\hat H}$ by using the spin coherent states
+%     \[
+%       Z = \exp\ab\{-\frac\iu2 \Omega[\bm n(\tau)]
+%         - \int_0^\beta \d\tau \bm B \cdot \bm n(\tau)\},
+%     \]
+%     where $\Omega[\bm n(\tau)] = \int_0^\beta \d \tau[1 - \cos\theta(\tau)]
+%     \dot\varphi(\tau)$ is the solid angle subtended by the closed
+%     path $\bm n(\tau)$ with $\bm n(0) = \bm n(\beta)$. Optional: From this
+%     result, find the classical equation of motion for $\bm n$ of real time $t$.
+%   \end{enumext}
+% \end{problem}
+% \begin{solution}\leavevmode
+%   \begin{enumext}
+%     \item List all the properties first
+%     \[\begin{array}{@{}*2{l@{~}c@{~}l@{\quad}}l@{~}c@{~}l@{}}
+%       \hat \sigma_x \ket|\uparrow> & = &
+%       \begin{psmallmatrix}
+%         0 & 1\\ 1 & 0
+%       \end{psmallmatrix}
+%       \begin{psmallmatrix}
+%         1\\ 0
+%       \end{psmallmatrix} = +\ket|\downarrow>, &
+%       \hat \sigma_y \ket|\uparrow> & = &
+%       \begin{psmallmatrix}
+%         0 & -\iu\\ \iu & 0
+%       \end{psmallmatrix}
+%       \begin{psmallmatrix}
+%         1\\ 0
+%       \end{psmallmatrix} = +\iu \ket|\downarrow>, &
+%       \hat \sigma_z \ket|\uparrow> & = &
+%       \begin{psmallmatrix}
+%         1 & 0\\ 0 & -1
+%       \end{psmallmatrix}
+%       \begin{psmallmatrix}
+%         1\\ 0
+%       \end{psmallmatrix} = +\ket|\uparrow>,\\
+%       \hat \sigma_x \ket|\downarrow> & = &
+%       \begin{psmallmatrix}
+%         0 & 1\\ 1 & 0
+%       \end{psmallmatrix}
+%       \begin{psmallmatrix}
+%         0\\ 1
+%       \end{psmallmatrix} = + \ket|\uparrow>, &
+%       \hat \sigma_y \ket|\downarrow> & = &
+%       \begin{psmallmatrix}
+%         0 & -\iu\\ \iu & 0
+%       \end{psmallmatrix}
+%       \begin{psmallmatrix}
+%         0\\ 1
+%       \end{psmallmatrix} = -\iu \ket|\uparrow>, &
+%       \hat \sigma_z \ket|\downarrow> & = &
+%       \begin{psmallmatrix}
+%         1 & 0\\ 0 & -1
+%       \end{psmallmatrix}
+%       \begin{psmallmatrix}
+%         0\\ 1
+%       \end{psmallmatrix} = -\ket|\downarrow>,
+%     \end{array}\]
+%     Then, after acting $\hat J_\pm$ to $\ket|\uparrow>$ and $\ket|\downarrow>$
+%     \[\begin{array}{@{}l@{~}c@{~}l@{\quad}l@{~}c@{~}l@{}}
+%       \hat J_+ \ket|\uparrow> & = & \frac12\ket|\downarrow>
+%         + \frac\iu2 \iu\ket|\downarrow> = \bm 0, &
+%       \hat J_+ \ket|\downarrow> & = & \frac12\ket|\uparrow>
+%         + \frac\iu2 (-\iu)\ket|\uparrow> = \ket|\uparrow>, \\
+%       \hat J_- \ket|\uparrow> & = & \frac12\ket|\downarrow>
+%         - \frac\iu2 \iu\ket|\downarrow> = \ket|\downarrow>, &
+%       \hat J_- \ket|\downarrow> & = & \frac12\ket|\uparrow>
+%         - \frac\iu2 (-\iu)\ket|\uparrow> = \bm 0.
+%     \end{array}\]
+%     Since the double action of $\hat J_\pm$ vanishes
+%     \[
+%       \hat J_\pm^2 = \frac14 (\hat \sigma_x + \iu\hat \sigma_y)^2
+%     = \frac{\hat \sigma_x^2 \pm\iu(\hat \sigma_x\hat \sigma_y
+%       + \hat \sigma_y\hat \sigma_x) - \hat \sigma_y^2}{4}
+%     = \frac{1 \pm \iu \cdot 0 - 1}4 = \mathbf O,
+%     \]
+%     and the crossing term satisfies
+%     \[
+%       \hat J_- \hat J_+ = \hat J_+ \hat J_-
+%     = \frac{\hat \sigma_x^2 - \iu(\hat \sigma_x\hat \sigma_y
+%       + \hat \sigma_y\hat \sigma_x) + \hat \sigma_y^2}{4}
+%     = \frac12 \identity,
+%     \]
+%     denoting the exponential index of $D(\alpha)$
+%     as $\hat X = \alpha \hat J_- - \alpha^* \hat J_+$, then
+%     \[
+%       \hat X^2 = \alpha^2\hat J_-^2
+%         - |\alpha|^2(\hat J_-\hat J_+ + \hat J_+\hat J_-)
+%         + (\alpha^*)^2 \hat J_+^2
+%     = -|\alpha|^2 \identity.
+%     \]
+%     Then, it is obviously that
+%     \[
+%       \hat X^3 = \hat X \hat X^2 = -|\alpha|^2 \hat X, \quad
+%       \hat X^4 = \hat X^2 \hat X^2 = |\alpha|^4 \identity. 
+%     \]
+%     The pattern continues: the even powers are differed by
+%     \[
+%       \hat X^k
+%     = \begin{cases*}
+%         (-1)^{k/2} |\alpha|^k \identity,      & $k$ is even,\\
+%         (-1)^{(k-1)/2} |\alpha|^{k-1} \hat X, & $k$ is odd.
+%       \end{cases*}
+%     \]
+%     Taking Taylor expansion to $D(\alpha) = \upe^{\hat X}$
+%     \[
+%       D(\alpha) = \sum_{n=0}^\infty \frac{\hat X^n}{n!}
+%     = \identity + \hat X + \frac1{2!} \hat X^2 + \frac1{3!} \hat X^3 + \cdots
+%     \]
+%     Separate the even and odd terms
+%     \begin{align*}
+%       \text{Even} &
+%     = \identity + \frac1{2!} \hat X^2 + \frac1{4!} \hat X^4 + \cdots
+%     = \sum_{n=0}^\infty \frac1{(2n)!} (-1)^n |\alpha|^{2n} \identity
+%     = \cos |\alpha| \identity,\\
+%       \text{Odd} &
+%     = \hat X + \frac1{3!} \hat X^3 + \frac1{5!} \hat X^5 + \cdots
+%     = \hat X \sum_{n=0}^\infty \frac1{(2n + 1)!} (-1)^n |\alpha|^{2n+1-1}
+%     = \frac{\sin |\alpha| \hat X}{|\alpha|}.
+%     \end{align*}
+%     Hence, the operator function can be expressed as
+%     \[
+%       D(\alpha) = \cos |\alpha| \identity + \frac{\sin |\alpha|}{|\alpha|}
+%         (\alpha \hat J_- - \alpha^* \hat J_+).
+%     \]
+%     Due to the properties of $\hat J_\pm$ we have listed before,
+%     acting $D(\alpha)$ on $\ket|\uparrow>$ can obtain
+%     \[
+%       \ket|\alpha> = \cos |\alpha| \ket|\alpha> + \frac{\sin |\alpha|}{|\alpha|}
+%         (\alpha \ket|\downarrow> - \alpha^* 0)
+%       \xlongequal{\alpha \equiv |\alpha| \upe^{\iu\varphi_\alpha}}
+%         \cos |\alpha| \ket|\alpha>
+%         + \sin |\alpha| \upe^{\iu\varphi_\alpha} \ket|\downarrow>.
+%     \]
+%     To evaluate $\braket<\bm n|\bm B \cdot \bm \sigma|\bm n>$, separate it into
+%     \[
+%       \braket<\bm n|\bm B \cdot \bm \sigma|\bm n>
+%     = B_x\braket<\bm n|\hat \sigma_x|\bm n>
+%     + B_y\braket<\bm n|\hat \sigma_y|\bm n>
+%     + B_z\braket<\bm n|\hat \sigma_z|\bm n>
+%     \]
+%     Since $\sigma_x\ket|n> = \cos\frac\theta2 \ket|\downarrow>
+%         + \sin\frac\theta2\upe^{\iu\varphi}\ket|\uparrow>$,
+%     exapnding $\bm n$ in the first term, then
+%     \begin{multline*}
+%       B_x\braket<\bm n|\hat \sigma_x|\bm n>
+%     = B_x\ab(\bra<\uparrow|\cos\frac\theta2
+%         + \bra<\downarrow|\sin\frac\theta2 \upe^{-\iu\varphi})
+%           \ab(\cos\frac\theta2\ket|\downarrow>
+%         + \sin\frac\theta2 \upe^{+\iu\varphi} \ket|\uparrow>)\\
+%     \xlongequal[\braket<s|s'> = 0]{\braket<s|s> = 1} B_x \ab(
+%       \cos\frac\theta2 \sin\frac\theta2 \upe^{+\iu\varphi}
+%     + \sin\frac\theta2 \cos\frac\theta2 \upe^{-\iu\varphi})
+%     = B_x \sin\theta \cos\varphi
+%     \end{multline*}
+%     Since $\sigma_y\ket|n> = \iu\cos\frac\theta2 \ket|\downarrow>
+%         - \iu \sin\frac\theta2\upe^{\iu\varphi}\ket|\uparrow>$,
+%     exapnding $\bm n$ in the second term, then
+%     \begin{multline*}
+%       B_y\braket<\bm n|\hat \sigma_y|\bm n>
+%     = B_y\ab(\bra<\uparrow|\cos\frac\theta2
+%         + \bra<\downarrow|\sin\frac\theta2 \upe^{-\iu\varphi})
+%           \ab(\iu\cos\frac\theta2\ket|\downarrow>
+%         - \iu\sin\frac\theta2 \upe^{+\iu\varphi} \ket|\uparrow>)\\
+%     \xlongequal[\braket<s|s'> = 0]{\braket<s|s> = 1} B_y \ab(
+%     - \iu \cos\frac\theta2 \sin\frac\theta2 \upe^{+\iu\varphi}
+%     + \iu \sin\frac\theta2 \cos\frac\theta2 \upe^{-\iu\varphi})
+%     = B_y \sin\theta \sin\varphi
+%     \end{multline*}
+%     Since $\sigma_z\ket|n> = \cos\frac\theta2 \ket|\uparrow>
+%         - \sin\frac\theta2\upe^{\iu\varphi}\ket|\downarrow>$,
+%     exapnding $\bm n$ in the third term, then
+%     \begin{multline*}
+%       B_z\braket<\bm n|\hat \sigma_x|\bm n>
+%     = B_z\ab(\bra<\uparrow|\cos\frac\theta2
+%         + \bra<\downarrow|\sin\frac\theta2 \upe^{-\iu\varphi})
+%           \ab(\cos\frac\theta2\ket|\uparrow>
+%         - \sin\frac\theta2 \upe^{+\iu\varphi} \ket|\downarrow>)\\
+%     \xlongequal[\braket<s|s'> = 0]{\braket<s|s> = 1} B_z \ab(
+%       \cos\frac\theta2 \cos\frac\theta2
+%     - \sin\frac\theta2 \sin\frac\theta2)
+%     = B_z \cos\theta
+%     \end{multline*}
+%     Combining these three terms
+%     \begin{multline*}
+%       \braket<\bm n|\bm B \cdot \bm\sigma|\bm n>
+%     = B_x \sin\theta \cos\varphi + B_y \sin\theta \sin\varphi + B_z \cos\theta\\
+%     = (B_x, B_y, B_z) \cdot
+%       (\sin\theta\cos\varphi, \sin\theta\sin\varphi, \cos\theta)
+%     = \bm B \cdot \bm n
+%     \end{multline*}
+%     \item From $\ket|\bm n> = \cos\frac\theta2\ket|\uparrow>
+%     + \sin\frac\theta2\upe^{\iu\varphi} \ket|\downarrow>$,
+%     expanding $\ketbra|n><n|$ first
+%     \[
+%       \ketbra|n><n| =
+%       \begin{pmatrix}
+%         \cos^2\frac\theta2 &
+%         \cos\frac\theta2 \sin\frac\theta2 \upe^{-\iu\varphi}\\
+%         \sin\frac\theta2 \cos\frac\theta2 \upe^{+\iu\varphi} &
+%         \sin^2\frac\theta2
+%       \end{pmatrix}.
+%     \]
+%     Integrate over each term.
+%     \begin{enumext}[columns = 2]
+%       \item $\frac1{2\pi} \int_0^{2\pi} \d\varphi
+%         \int_0^\pi \sin\theta \cos^2\frac\theta2 \d\theta = 1$.
+%       \item $\frac1{2\pi} \int_0^{2\pi} \upe^{-\iu\varphi} \d\varphi
+%         \int_0^\pi \cos\frac\theta2 \sin\frac\theta2 \d\theta = 0$.
+%       \item $\frac1{2\pi} \int_0^{2\pi} \upe^{+\iu\varphi} \d\varphi
+%         \int_0^\pi \sin\frac\theta2 \cos\frac\theta2 \d\theta = 0$.
+%       \item $\frac1{2\pi} \int_0^{2\pi} \d\varphi
+%         \int_0^\pi \sin\theta \sin^2\frac\theta2 \d\theta = 1$.
+%     \end{enumext}
+%     Finally, we arrive at
+%     \[
+%       \int \frac{\d^2\bm n}{2\pi} \ketbra|n><n|
+%     = \begin{psmallmatrix}
+%         1 & 0\\ 0 & 1
+%       \end{psmallmatrix} = \identity.
+%     \]
+%     The overlap of two coherent states is
+%     \begin{multline*}
+%       \braket<\bm n|\bm n'>
+%     = \ab(\bra<\uparrow| \cos\frac\theta2
+%       + \bra<\downarrow| \sin\frac\theta2 \upe^{-\iu\varphi})
+%       \ab(\ket|\uparrow> \cos\frac{\theta'}{2}
+%       + \ket|\downarrow> \sin\frac{\theta'}{2} \upe^{+\iu{\varphi'}})\\
+%     = \cos\frac\theta2 \cos\frac{\theta'}{2}
+%       + \sin\frac\theta2 \sin\frac{\theta'}{2} \upe^{\iu(\varphi'-\varphi)}.
+%     \end{multline*}
+%     For simplification, calculate the magnitude and phase respectively.
+%     \begin{enumext}
+%       \item The magnitude.
+%       Denote $\delta = \varphi' - \varphi$, then
+%       \begin{multline*}
+%         |\braket<\bm n|\bm n'>|^2
+%       = \cos^2\frac\theta2 \cos^2\frac{\theta'}{2} +
+%         \sin^2\frac\theta2 \sin^2\frac{\theta'}{2} +
+%         2 \cos\frac\theta2 \cos\frac{\theta'}{2}
+%           \sin\frac\theta2 \sin\frac{\theta'}{2} \cos\delta\\
+%       = \frac12 (1 + \cos\theta \cos\theta' + \sin\theta \sin\theta' \cos\delta)
+%       \end{multline*}
+%       Since $\bm n \cdot \bm n'
+%       = \sin\theta \sin\theta' \cos \delta + \cos\theta \cos\theta'$, then
+%       $|\braket<\bm n|\bm n'>|^2 = \frac12 (1 + \bm n \cdot \bm n')$,
+%       the magnitude on LSH matchs that on RHS.
+%       \item The phase. Now, $\braket<\bm n|\bm n'>$ can be expressed as
+%       \[
+%         \braket<\bm n|\bm n'> = |z|\upe^{\iu\Phi}, \quad
+%         |z| = \sqrt{(1 + \bm n \cdot \bm n')/2}.
+%       \]
+%       From the overlap of two coherent states
+%       \begin{multline*}
+%         \braket<\bm n|\bm n'> = \cos\frac\theta2 \cos\frac{\theta'}{2}
+%           + \sin\frac\theta2 \sin\frac{\theta'}{2} \upe^{\iu\delta}\\
+%       = \ab(\cos\frac\theta2 \cos\frac{\theta'}{2}
+%       + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta)
+%       + \iu \ab(\sin\frac\theta2 \sin\frac{\theta'}{2} \sin \delta)
+%       \end{multline*}
+%       Then, the phase satisfies
+%       \[
+%         \tan \Phi = \frac{\sin\frac\theta2 \sin\frac{\theta'}{2} \sin \delta}
+%           {\cos\frac\theta2 \cos\frac{\theta'}{2}
+%           + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta}
+%       \]
+%       The numerator of the known phase
+%       \[
+%         \hat z \cdot \bm n \times \bm n'
+%       = \sin\theta \cos\varphi \sin\theta' \sin\varphi'
+%       - \sin\theta \sin\varphi \sin\theta' \sin\varphi',
+%       \]
+%       The denominator
+%       \begin{multline*}
+%         1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z
+%       = 1 + \cos\theta
+%         + \sin\theta \sin\theta' \cos \delta + \cos\theta \cos\theta'
+%         + \cos\theta'\\
+%       = (1 + \cos\theta)(1 + \cos\theta') + \sin\theta \sin\theta' \cos \delta
+%       \end{multline*}
+%       Recalling $\cos\theta = 2\cos^2\frac\theta2 - 1$
+%       \[
+%         1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z
+%       = 4\cos^2\frac\theta2 \cos^2\frac{\theta'}{2}
+%       + 4 \sin\frac\theta2 \cos\frac\theta2
+%           \sin\frac{\theta'}{2} \cos\frac{\theta'}{2} \cos \delta
+%       \]
+%       Then, the phase
+%       \[
+%         \tan\ab(\frac\Omega2)
+%       = \frac{\sin\frac\theta2 \sin\frac{\theta'}{2} \sin \delta}
+%           {\cos\frac\theta2 \cos\frac{\theta'}{2}
+%           + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta},
+%       \]
+%       The phase on LSH matchs that on RHS.
+%     \end{enumext}
+%     Hence, the identity
+%     \[
+%       \braket<\bm n|\bm n'>
+%     = \frac{\hat z \cdot (\bm n \times \bm n')}
+%         {1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z}
+%     = \ab(\frac{1 + \bm n \cdot \bm n'}{2})^{\frac12}
+%       \upe^{\iu\Omega(\hat z, \bm n, \bm n')/2}
+%     \]
+%     is true.
+%     \item Slicing the imaginary time into $N$ pieces with $\epsilon = \beta/N$,
+%     then
+%     \[
+%       \upe^{-\beta\hat H} = (\upe^{-\epsilon\hat H})^N,\quad
+%       Z = \Tr(\underbrace{\upe^{-\epsilon\hat H} \cdots \upe^{-\epsilon\hat H}}_
+%         \text{$n$ terms})
+%     \]
+%     Choosing the basis $\{\ket|a>\}$. By difinition of the trace
+%     \[
+%       Z = \sum_{\bm n_0}
+%         \braket<\bm n_0|\upe^{-\epsilon\hat H} \cdots
+%           \upe^{-\epsilon\hat H}|\bm n_0>.
+%     \]
+%     Inserting the identity operator ($N - 1$ in total) $\identity
+%     = \int \frac{\d^2\bm n}{2\pi} \ketbra|\bm n><\bm n|$
+%     between every pair of neighboring factors with the
+%     PBC $\bm n_N \equiv \bm n_0$ applied
+%     \begin{multline*}
+%       Z = \underbrace{\int \frac{\d^2\bm n_{N-1}}{2\pi} \cdots
+%                       \int \frac{\d^2\bm n_1}{2\pi}}_\text{$N-1$ times}
+%           \braket<\bm n_0     |\upe^{-\epsilon\hat H} |\bm n_{N-1}>
+%           \braket<\bm n_{N-1} |\upe^{-\epsilon\hat H} |\bm n_{N-2}> \cdots
+%           \braket<\bm n_1     |\upe^{-\epsilon\hat H} |\bm n_0>\\
+%         = \int^{(N-1)} \ab(\prod_{k=1}^{N-1} \frac{\d^2\bm n_k}{2\pi})
+%           \ab(\prod_{k=1}^N
+%             \braket<\bm n_k|\upe^{-\epsilon\hat H}|\bm n_{k-1}>).
+%     \end{multline*}
+%     Now, handling the term in the last bracket
+%     \begin{multline*}
+%       \braket<\bm n_k|\upe^{-\epsilon\hat H}|\bm n_{k-1}> \approx
+%       \braket<\bm n_k|\bm n_{k-1}> \ab(1 -
+%         \frac{\epsilon\braket<\bm n_k|\hat H|\bm n_{k-1}>}
+%           {\braket<\bm n_k|\bm n_{k-1}>})\\
+%       \xlongequal[\bm n_k - \bm n_{k-1} = O(\epsilon)]
+%         {\text{Smooth-path assumption}}
+%       \braket<\bm n_k|\bm n_{k-1}> \ab(1 - \epsilon \bm B \cdot \bm n_k)
+%       \approx \braket<\bm n_k|\bm n_{k-1}> \upe^{-\bm B\cdot\bm n_k}.
+%     \end{multline*}
+%     Then, evaluate $\braket<\bm n_k|\bm n_{k-1}>$. For $\bm n_{k-1}$, it
+%     corresponds to $\theta_{k-1} = \theta_k - \Delta\theta_k$
+%     and $\varphi_{k-1} = \varphi_k - \Delta\varphi_k$.
+%     Using the first-order Taylor approximation,
+%     the overlap now can be expanded as
+%     \begin{align*}
+%       \braket<\bm n|\bm n'> &
+%     = \cos\frac{\theta_k}{2} \cos\frac{\theta_{k-1}}{2}
+%       + \sin\frac{\theta_k}{2} \sin\frac{\theta_{k-1}}{2}
+%       \upe^{\iu(-\Delta\varphi_k)}\\
+%     & = \cos\frac{\theta_k}{2} \ab[\cos\frac{\theta_k}{2}
+%       - \frac12\sin\frac{\theta_k}{2}(-\Delta\theta_k)]
+%       + \sin\frac{\theta_k}{2} \ab[\sin\frac{\theta_k}{2}
+%         + \frac12\cos\frac{\theta_k}{2}(-\Delta\theta_k)]
+%       (1 - \iu\Delta\varphi_k)\\
+%     & = 1 - \iu\Delta\varphi_k \sin^2\frac{\theta_k}{2}
+%     = 1 - \iu\Delta\varphi_k\ab(\frac{1 - \cos\theta_k}{2})
+%     \approx \exp\ab[-\iu\Delta\varphi_k\ab(\frac{1 - \cos\theta_k}{2})].
+%     \end{align*}
+%     Hence, we can obtain
+%     \[
+%       \braket<\bm n_k|\upe^{-\epsilon\hat H}|\bm n_{k-1}> \approx
+%       \exp\ab[-\iu\Delta\varphi_k\ab(\frac{1 - \cos\theta_k}{2})
+%         - \epsilon \bm B \cdot \bm n_k].
+%     \]
+%     Substituting it back to the partition function
+%     \[
+%       Z = \int^{(N-1)} \ab(\prod_{k=1}^{N-1} \frac{\d^2\bm n_k}{2\pi})
+%         \exp\ab\{\sum_{k=1}^N
+%         \ab[-\iu\Delta\varphi_k\ab(\frac{1 - \cos\theta_k}{2})
+%         - \epsilon \bm B \cdot \bm n_k]\}.
+%     \]
+%     Taking the continuum limit, i.e., $N \to \infty$,
+%     $\epsilon \to \d\tau$, then the summation becomes integration
+%     \begin{multline*}
+%       Z = \int^{(N-1)} \ab(\prod_{k=1}^{N-1} \frac{\d^2\bm n_k}{2\pi})
+%         \exp\ab[-\frac\iu2\int_0^\beta \d\tau \dot\varphi(\tau)
+%         (1 - \cos\theta(\tau)) - \int_0^\beta \d\tau \bm B \cdot \bm n(\tau)]\\
+%       = \int^{(N-1)} \mathcal D[\bm n(\tau)]
+%         \exp\ab\{-\frac\iu2 \Omega[\bm n(\tau)]
+%         - \int_0^\beta \d\tau \bm B \cdot \bm n(\tau)\}.
+%     \end{multline*}
+%     In the classical case, simply taking the Wick rotation $\tau \mapsto \iu t$,
+%     the real-time action can be obtained
+%     \[
+%       \mathcal S = \int \d t \ab[-\frac12(1 - \cos\theta)\dot\varphi
+%         - \bm B \cdot \bm n]
+%     = \int \d t \mathcal L(\theta, \dot\theta; \varphi,\dot\varphi;t).
+%     \]
+%     The E-L equations will be
+%     \[
+%       \begin{dcases}
+%         \odv*[fun]{\pdv{\mathcal L}{\dot\theta}}t
+%         - \pdv{\mathcal L}\theta = 0, &
+%         \longrightarrow \dot\varphi
+%         - 2B_x\cot\theta \cos\varphi - 2B_y\cot\theta \sin\varphi + 2B_z = 0\\
+%         \odv*[fun]{\pdv{\mathcal L}{\dot\varphi}}t
+%         - \pdv{\mathcal L}\varphi = 0, &
+%         \longrightarrow \dot\theta + 2B_x \sin\varphi - 2B_y \cos\varphi = 0.
+%       \end{dcases}
+%     \]
+%     Substituting $\dot\varphi$ and $\dot\theta$ into $\dot n_x$, $\dot n_y$,
+%     $\dot n_z$ respectively, then one can obtain
+%     \[
+%       \begin{cases}
+%         \dot n_x = \cos\theta \dot\theta \cos\varphi
+%           - \sin\theta \sin\varphi \dot\varphi
+%         = 2B_y\cos\theta - 2B_z \sin\theta \sin\varphi,\\
+%         \dot n_y = \cos\theta \dot\theta \sin\varphi
+%           + \sin\theta \cos\varphi \dot\varphi
+%         = -2B_x\cos\theta + 2B_z\sin\theta\cos\varphi,\\
+%         \dot n_z = -\sin\theta \dot\theta
+%         = 2B_x \sin\theta \sin\varphi - 2B_y \sin\theta \cos\varphi,
+%       \end{cases}
+%     \]
+%     which containing the form of crossing product. Since
+%     \[
+%       \bm B \times \bm n = (
+%         B_y \cos\theta - B_z \sin\theta \sin\varphi,
+%         -B_x \cos\theta + B_z \sin\theta \cos\varphi,
+%         B_x \sin\theta \sin\varphi - B_y \sin\theta \cos\varphi),
+%     \]
+%     then, one can obtain the EOM for the classical case
+%     \[
+%       \dot{\bm n} - 2\bm B \times \bm n = 0.
+%     \]
+%   \end{enumext}
+% \end{solution}
+
+\clearpage
 
 \begin{problem}[Discrete translational symmetry]
   Consider the following Hamiltonian for a 1D system
   \[
-    \hat H = \frac{\hbar^2}{2m}\hat k^2 + V\cos(2\pi\hat x/\lambda),
+    \hat H = \frac{\hbar^2}{2m}\hat k^2 + V\cos\ab(\frac{2\pi\hat x}\lambda),
   \]
   where $\lambda$ is a positive real number.
   \begin{enumext*}[label = (\alph*)]
@@ -148,9 +656,128 @@
     eigenstates of the Hamiltonian) in the $k = \pi$ space.
   \end{enumext*}
 \end{problem}
-\begin{solution}
-  
+\begin{solution}\leavevmode
+  \begin{enumext}
+    \item Since the commutator cam be computed using the identity
+    \[
+      [a, b^n] = [\hat a, \hat b]\hat b^{n-1}
+                + \hat b[\hat a, \hat b]\hat b^{n-2} + \cdots
+                + \hat b^{n-1}[\hat a, \hat b]
+    = \sum_{m=0}^{n-1} a^m [a, b] b^{n-1-m}.
+    \]
+    Given $[\hat k, \hat x] = -\iu$, then
+    \[
+      [\hat k, \hat x^n] = (-\iu) \sum_{m=0}^{n-1} \hat x^{n-1}
+    = (-\iu) n \hat x^{n-1}.
+    \]
+    Consider an arbitrary function can be expanded into a power series
+    $f(\hat x) = \sum_{n=0}^\infty a_n \hat x^n$.
+    Then, the commutator of $\hat k$ and it becomes
+    \[
+      [\hat k, f(\hat x)] = \sum_{n=1}^\infty a_n [\hat k, \hat x^n]
+    = (-\iu) \sum_{n=1}^\infty a_n n \hat x^{n-1}
+    = (-\iu) f'(\hat x).
+    \]
+    Taking $f(\hat x) = \cos(2\pi\hat x/\lambda)$.
+    Since $[\hat k, \hat k^2] = 0$, then
+    \[
+      [\hat k, \hat H]
+    = V (-\iu) (-\frac{2\pi}{\lambda}) \sin\ab(\frac{2\pi\hat x}{\lambda})
+    = \frac{2\pi\iu V}{\lambda} \sin\ab(\frac{2\pi\hat x}{\lambda}).
+    \]
+    Since $[\hat k, \hat H] \neq 0$, so $\hat k$'s eigenvalue is not a good
+    quantum number.
+    \item Consider $\hat T_\lambda \hat x \hat T_\lambda^{-1}$, due to the
+    BCH identity
+    \[
+      \hat T_\lambda \hat x \hat T_\lambda^{-1}
+    = \upe^{-\iu\lambda\hat k} \hat x \upe^{\iu\lambda\hat k}
+    = x + [x, -\iu\lambda \hat k] \xlongequal{[x, k] = \iu} \hat x + \lambda.
+    \]
+    Rearrange it, then
+    \[
+      \hat T_\lambda \hat x = (\hat x + \lambda) \hat T_\lambda
+    \]
+    Act the both sides on $\ket|x>$
+    \begin{align*}
+      \text{LHS} & = \hat T_\lambda \hat x \ket|x> = \hat T_\lambda x \ket|x>
+    = x \hat T_\lambda \ket|x> = x \ket|x + \lambda>,\\
+      \text{RHS} & = (\hat x + \lambda) \hat T_\lambda \ket|x>
+    = (\hat x + \lambda) \ket|x + \lambda>
+    \end{align*}
+    Rearrange it, then
+    \[
+      (\hat x + \lambda) \ket|x + \lambda> = x\ket|x + \lambda>, \quad
+      \hat x \ket|x + \lambda> = (x - \lambda) \ket|x + \lambda>.
+    \]
+    This is the eigenequation for $\hat x$ with the eigenvalue $x - \lambda$.
+    The physical meaning is that $\hat T_\lambda$ is the
+    operator that translates states by distance $\lambda$.
+
+    Concerning the commutator $[\hat T_\lambda, H]$.
+    It is obviously that $\hat T_\lambda$ is commutative to the kinetic term,
+    then due to the BCH identity
+    \[
+      \hat T_\lambda \ab(\frac{\hbar^2}{2m} \hat k^2) \hat T_\lambda^{-1}
+    = \frac{\hbar^2}{2m} \hat k^2.
+    \]
+    For the potential term, consider
+    \[
+      \hat T \hat x \hat T^{-1} \xlongequal{\text{BCH identity}}
+      \hat x - [-\iu\lambda \hat k, \hat x] = \hat x + \lambda.
+    \]
+    Since the potential term can be expanded in terms of a combination of
+    different power of $\hat x$, and $\hat T^{-1}\hat T$ can be inserted between
+    every two $\hat x$, which shifts them to $\hat x + \lambda$. Hence
+    \[
+      \hat T \ab[V\cos\ab(\frac{2\pi\hat x}{\lambda})] \hat T^{-1}
+    = V\cos\ab[\frac{2\pi(\hat x + \lambda)}{\lambda}]
+    = V\cos\ab(\frac{2\pi\hat x}{\lambda}).
+    \]
+    The same as the potential term.
+    Since the commutator can be written as
+    \[
+      [\hat T_\lambda, \hat H]
+    = \hat T_\lambda \hat H \hat T_\lambda^{-1} \hat T_\lambda
+      - \hat H \hat T_\lambda
+    = (\hat T_\lambda \hat H \hat T_\lambda^{-1} - \hat H) \hat T_\lambda.
+    \]
+    We can obtain $\hat T_\lambda \hat H \hat T_\lambda^{-1} = \hat H$.
+    So, $[\hat T_\lambda, \hat H] = 0$, the eigenvalue of $\hat T_\lambda$
+    is a good quantum number.
+    \item 
+  \end{enumext}
+  \begin{enumext}
+    \item Eigenstates of $+1$
+    \[
+      \{\ket|2n> \equiv \ket|k = \frac{2n\pi}{\lambda}>, n \in \mathbb Z\},
+    \]
+    Eigenstates of $-1$
+    \[
+      \{\ket|2n + 1> \equiv \ket|k = \frac{(2n + 1)\pi}{\lambda}>, n \in \mathbb Z\}.
+    \]
+    The kinetic term
+    \[
+      \braket<n|\frac{\hbar^2\hat k^2}{2m}|n'> = \ab(\frac{n\pi}{\lambda})^2
+      \frac{\hbar^2}{2m} \delta_{nn'} = E_n \delta_{nn'}
+    \]
+    and the move operator in $k$-space
+    \[
+      \frac12\braket<|\upe^{\iu\frac{2\pi}{\lambda}\hat x}+\upe^{-\iu\frac{2\pi}{\lambda}\hat x}|2n'>
+    = \frac12(\braket<2n|2(n' + 1)> + \braket<2n'|2(n' - 1)>)
+    \]
+    \item $k = 0$, $E_g = E_0 - 2\frac{(V_{1,2})^2}{E_2 - E_0}$
+    \[
+      \ket|g> =
+      \ab(1 - \frac{V^2}{2E_2^2}) \ket|0>
+    - \frac{V}{2E_0} (\ket|-2> + \ket|+2>)
+    + \frac{V^2}{4E_4E_2} (\ket|-4> + \ket|+4>).
+    \]
+    When $k = \pi$, $\Delta = V$.
+  \end{enumext}
 \end{solution}
+
+\clearpage
 
 \begin{problem}[Representation of $D_3$]
   Let's extend the example used in our classes by including two
@@ -194,35 +821,335 @@
     the result based on the irreps of $D_3$.
   \end{enumext}
 \end{problem}
-\begin{solution}
-  
+\begin{solution}\leavevmode
+  \begin{enumext}
+    \item $(\hat\rho \hat R) \ket|i,s> = \ket|-i - 1, s>$
+    \item
+    \[
+      \hat R\ketbra|i,s><i',s'|\hat R^{-1}
+    = \ketbra|i + 1, s><i' + 1, s'|, \quad
+      \hat\rho \ketbra|i, s><i', s'| \hat\rho^{-1}
+    = \ketbra|-i, -s><-i', -s'|.
+    \]
+    \[
+      \begin{pNiceArray}[first-col]{ccc:ccc}
+        \ket|0+> & \epsilon & a & b & c & d & e\\
+        \ket|1+> & b & \epsilon & a & e & c & d\\
+        \ket|2+> & a & b & \epsilon & d & e & c\\
+        \hdottedline
+        \ket|0-> & c & e & d & \epsilon & b & a\\
+        \ket|1-> & d & c & e & a & \epsilon & b\\
+        \ket|2-> & e & d & c & b & a & c
+      \end{pNiceArray}
+    \]
+    Then, there are $\epsilon$, $c$, $d$, $e \in \mathbb R$ ($+$),
+    $b = a^* \in \mathbb C$ ($-$).
+    \item $\hat \rho \hat R_\pm \hat \rho^{-1} = \hat R^2_\mp$,
+    then
+    \[
+      \hat \rho (\hat R_+ + \hat R_-^2) \hat \rho^{-1}
+    = \hat R_-^2 + \hat R_+^2.
+    \]
+    $\hat R \hat \rho_i \hat R^{-1} = \hat \rho_{i+1}$,
+    then
+    \[
+      \hat R(\sum_i \hat \rho_i) \hat R^{-1} = \sum_i \hat \rho_i.
+    \]
+    The commutator $[\hat H_R, \hat H_\rho] = 0$,
+    $\hat \rho_i = \hat \rho \hat R^2$.
+
+    Consider $\hat R_s$
+    \[
+      \hat R_s \ket|k, s> = \omega^k \ket|k, s>, \quad
+      \omega = \upe^{\iu\frac{2\pi}{3}}, \quad
+      \ket|k, s> = \frac1{\sqrt3} \sum_i \omega^{-ki} \ket|i, s>
+    \]
+    The eigenvalues for $\hat R_\pm$
+    \begin{align*}
+      \omega^0, & \{\ket|k = 0, +>, \ket|k = 0, ->\}\\
+      \omega^1, & \{\ket|k = 1, +>, \ket|k = 1, ->\}\\
+      \omega^2, & \{\ket|k = 2, +>, \ket|k = 2, ->\}.
+    \end{align*}
+    $\hat R_-\ket|k, +> = 0$.
+    
+    Advanced.
+    \[
+      \hat \rho_i \ket|k,s>
+    = \hat \rho \hat R^i \ket|k, s>
+    \xlongequal{\hat R = \hat R_+ + \hat R_-}
+    \omega^{ki} \ket|-k, -s>.
+    \]
+    \[
+      \hat H_\rho \ket|k,s>
+    = \sum_i \hat \rho_i \ket|k, s>
+    = \sum_i \omega^{k_i} \ket|-k, -s> = 3 \delta_{k,0} \ket|-k, -s>
+    \]
+    \begin{center}
+      \begin{tabular}{c*6c}
+        \toprule
+        States & $\ket|k = 0,+>$ & $\ket|k = 0,->$
+               & $\ket|k = 1,+>$ & $\ket|k = 1,->$
+               & $\ket|k = 2,+>$ & $\ket|k = 2,->$\\
+        \midrule
+        $\hat H_R \sim \hat R_+ + \hat R_-^2$ &
+        $\omega^0$ & $\omega^0$ & $\omega^1$ &
+        $\omega^2$ & $\omega^2$ & $\omega^1$\\
+        $\hat H_R \sim \hat R_- + \hat R_+^2$ &
+        $\omega^0$ & $\omega^0$ & $\omega^2$ &
+        $\omega^1$ & $\omega^1$ & $\omega^2$\\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+    \begin{enumext}
+      \item For the states $\{\ket|k = 0,+>, \ket|k = 0,->\}$, their eigenvalues
+      $t\omega + (t\omega)^*$, $H_\rho = 3\begin{psmallmatrix}
+        & & 1\\
+        1
+      \end{psmallmatrix}$.
+      \item For the states $\{\ket|k = 1,+>, \ket|k = 2,->\}$ and
+      $\{\ket|k = 1,->, \ket|k = 2,+>\}$ their eigenvalues
+      $t\omega^* + t^*\omega$, $H_\rho = \begin{psmallmatrix}
+        0
+      \end{psmallmatrix}$.
+    \end{enumext}
+  \end{enumext}
 \end{solution}
 
-\begin{problem}[Angular momentum]
-  Let $\bm J = (J_x, J_y, J_z)$ be an angular momentum operator, where $J_x$,
-  $J_y$, $J_z$, and hence $J_\pm \equiv J_x \pm \iu J_y$, satisfy the usual
-  angular-momentum commutation relations.
-  \begin{enumext*}[label = (\alph*)]
-    \item Show that $\bm J^2 = J_z^2 + J_+J_- - \hbar J_z$.
-    \item Starting from $\bm J^2\ket|j, m> = \hbar^2 j(j + 1) \ket|j, m>$
-    and $J_z\ket|j, m> = \hbar m \ket|j, m>$, and making use of the above
-    equation, derive the coefficient $c_m$ defined
-    in $J_-\ket|j, m> = \hbar c_m\ket|j, m - 1>$.
-    \item Based on the above result, write down the matrix representation of
-    $J_x$ and $J_y$ in the $\{\ket|j, m>\}$ basis for the spin-$3/2$
-    (namely, $j = 3/2$) case.
-    \item Consider the combination of two degrees of freedom: An $l = 1$ orbital
-    (i.e., a $p$-orbital) and an $s = 1/2$ spin, write down the new bases
-    (in terms of the old ones) for the combined system decomposed according to
-    the total angular momentum $j$.
-    \item* (optional) The time-reversal operator in the $\{\ket|j, m>\}$ basis
-    is given by $\mathcal T = \upe^{\iu\pi J_y/\hbar} K$, where $K$ is the
-    complex conjugation operator. Show that $\mathcal T^2 = (-1)^{2j}$.
-  \end{enumext*}
-\end{problem}
-\begin{solution}
-  
-\end{solution}
+\clearpage
+
+% \begin{problem}[Angular momentum]
+%   Let $\bm J = (J_x, J_y, J_z)$ be an angular momentum operator, where $J_x$,
+%   $J_y$, $J_z$, and hence $J_\pm \equiv J_x \pm \iu J_y$, satisfy the usual
+%   angular-momentum commutation relations.
+%   \begin{enumext*}[label = (\alph*)]
+%     \item Show that $\bm J^2 = J_z^2 + J_+J_- - \hbar J_z$.
+%     \item Starting from $\bm J^2\ket|j, m> = \hbar^2 j(j + 1) \ket|j, m>$
+%     and $J_z\ket|j, m> = \hbar m \ket|j, m>$, and making use of the above
+%     equation, derive the coefficient $c_m$ defined
+%     in $J_-\ket|j, m> = \hbar c_m\ket|j, m - 1>$.
+%     \item Based on the above result, write down the matrix representation of
+%     $J_x$ and $J_y$ in the $\{\ket|j, m>\}$ basis for the spin-$3/2$
+%     (namely, $j = 3/2$) case.
+%     \item Consider the combination of two degrees of freedom: An $l = 1$ orbital
+%     (i.e., a $p$-orbital) and an $s = 1/2$ spin, write down the new bases
+%     (in terms of the old ones) for the combined system decomposed according to
+%     the total angular momentum $j$.
+%     \item* (optional) The time-reversal operator in the $\{\ket|j, m>\}$ basis
+%     is given by $\mathcal T = \upe^{\iu\pi J_y/\hbar} K$, where $K$ is the
+%     complex conjugation operator. Show that $\mathcal T^2 = (-1)^{2j}$.
+%   \end{enumext*}
+% \end{problem}
+% \begin{solution}\leavevmode
+%   \begin{enumext}
+%     \item Since $\bm J^2 = J_x^2 + J_y^2 + J_z^2$, then the RHS
+%       \begin{multline*}
+%         \bm J^2 = J_z^2 + (J_x + \iu J_y)(J_x - \iu J_y) - \hbar J_z
+%       = J_z^2 + J_x^2 -\iu [J_x, J_y] + J_y^2 - \hbar J_z\\
+%       = J_z^2 + J_x^2 -\iu \times \iu \hbar J_z + J_y^2 - \hbar J_z
+%       = J_z^2 + J_x^2 + J_y^2 = \bm J^2.
+%       \end{multline*}
+%     \item Acting the identity in (a) on $\ket|j, m>$
+%     \[
+%       \hbar^2j(j + 1) \ket|j, m> = \hbar^2m^2 \ket|j, m>
+%         + J_+J_- \ket|j, m> - \hbar^2m\ket|j, m>.
+%     \]
+%     Rearrange it then apply $\bra<j, m|$ to the left side
+%     \[
+%       \braket<j, m|J_+J_-|j, m>
+%     = \braket<j, m|\hbar^2[j(j + 1) - m(m - 1)]|j, m>
+%     = \hbar^2[j(j + 1) - m(m - 1)].
+%     \]
+%     Since $J_+ = J_-^\dagger$, then
+%     \[
+%       |J_-\ket|j, m>|^2 = \braket<j, m|J_+J_-|j,m>
+%     = \braket<j, m - 1|(\hbar c_m)^2|j, m - 1> = \hbar^2 |c_m|^2
+%     \]
+%     Comparing the above two equations, then one can obtain
+%     \[
+%       \hbar^2[j(j + 1) - m(m - 1)] = \hbar^2 |c_m|^2,\quad
+%       c_m = \sqrt{j(j + 1) - m(m - 1)}.
+%     \]
+%     \item The value of $m$ can be taken as
+%     \[
+%       m = \ket|-j, -j + 1, \ldots, +j>
+%     = \ket|-\sfrac32, -\sfrac12, +\sfrac12, +\sfrac32>
+%     \]
+%     Then, there should be $4$ states. Acting $J_\pm$ on $\ket|j, m>$ will obtain
+%     \[
+%       J_\pm \ket|j, m> = \hbar \sqrt{j(j + 1) - m(m \pm 1)} \ket|j, m \pm 1>.
+%     \]
+%     Now, acting $J_\pm$ on the $4$ states respectively.
+%     \[\begin{array}{@{}l@{~}c@{~}r@{\quad}l@{~}c@{~}r@{}}
+%       J_- \ket|\sfrac32, +\sfrac32> &
+%     = & \sqrt3 \hbar \ket|\sfrac32, +\sfrac12>, &
+%       J_- \ket|\sfrac32, +\sfrac12> & = & 2 \hbar \ket|\sfrac32, -\sfrac12>,\\
+%       J_- \ket|\sfrac32, -\sfrac12> &
+%     = & \sqrt3 \hbar \ket|\sfrac32, -\sfrac32>, &
+%       J_- \ket|\sfrac32, -\sfrac32> & = & 0.\\
+%     \end{array}\]
+%     Filling them at the corresponding matrix element position for $J_-$, then
+%     using $J_+ = J_-^\dagger$
+%     \[
+%       J_- =
+%       \begin{pNiceMatrix}[first-row, first-col]
+%         & \ket|\sfrac32, +\sfrac32> & \ket|\sfrac32, +\sfrac12>
+%         & \ket|\sfrac32, -\sfrac12> & \ket|\sfrac32, -\sfrac32>\\
+%         \bra<\sfrac32, +\sfrac32| & 0           & 0           & 0 & 0\\
+%         \bra<\sfrac32, +\sfrac12| & \sqrt3\hbar & 0           & 0 & 0\\
+%         \bra<\sfrac32, -\sfrac12| & 0           & 2\hbar      & 0 & 0\\
+%         \bra<\sfrac32, -\sfrac32| & 0 & 0       & \sqrt3\hbar & 0
+%       \end{pNiceMatrix}, \enspace
+%       J_+ =
+%       \begin{pmatrix}
+%         0 & \sqrt3\hbar & 0 & 0\\
+%         0 & 0 & 2\hbar & 0\\
+%         0 & 0 & 0 & \sqrt3\hbar\\
+%         0 & 0 & 0 & 0
+%       \end{pmatrix}.
+%     \]
+%     From $J_\pm = J_x \pm \iu J_y$, one can obtain
+%     \begin{align*}
+%       J_x = \frac{J_+ + J_-}2
+%     = \frac\hbar2
+%       \begin{pmatrix}
+%         0 & \sqrt3 & 0 & 0\\
+%         \sqrt3 & 0 & 2 & 0\\
+%         0 & 2 & 0 & \sqrt3\\
+%         0 & 0 & \sqrt3 & 0
+%       \end{pmatrix}, \enspace
+%       J_y = \frac{J_+ - J_-}{2\iu}
+%     = \frac\hbar2
+%       \begin{pmatrix}
+%         0 & -\sqrt3\iu & 0 & 0\\
+%         \sqrt3\iu & 0 & -2\iu & 0\\
+%         0 & 2\iu & 0 & -\sqrt3\iu\\
+%         0 & 0 & \sqrt3\iu & 0
+%       \end{pmatrix}.
+%     \end{align*}
+%     \item For given $l = 1$ and $s = \frac12$,
+%     $j$ will be limited within $|l - s|$, $|l - s| + 1$,
+%     $\ldots\,$,~$\leq l + s$, i.e., $j$ can be taken as $\frac12$ and $\frac32$.
+%     Since $m_j$ can be taken as $-j$, $-j + 1$, $\ldots\,$,~$j$, then
+%     \begin{enumext}
+%       \item $j = \frac32$: $m_j = -\frac32$, $-\frac12$,
+%                                  $+\frac12$, $+\frac32$.
+%       \begin{enumext}[label = \arabic*.]
+%         \item For $m_j = -\frac32 = m_l + m_s$
+%         \[
+%           \ket|m_l, m_s> = \ket|l = 1, m_l> \otimes \ket|s = \sfrac12, m_s>
+%         = \ket|1, -1> \otimes \ket|\sfrac12, -\sfrac12>.
+%         \]
+%         So, $\ket|j = +\sfrac32, m_j = -\sfrac32>$ corresponds uniquely to
+%         $\ket|m_l = -1, m_s = -\sfrac12>$.
+%         \item For $m_j = -\frac12$, consider
+%         \begin{align*}
+%           J_+\ket|\sfrac32, -\sfrac32> &
+%         = \sqrt{\sfrac32(\sfrac32 + 1) - (-\sfrac32)(-\sfrac32 + 1)} \hbar
+%           \ket|\sfrac32, +\sfrac12>
+%         = \sqrt3 \hbar \ket|\sfrac32, -\sfrac12>\\
+%         \intertext{Since $J_- = L_+ + S_+$, then it is equivalent to}
+%           J_+\ket|\sfrac32, -\sfrac32>
+%       & = (L_+ + S_+) \ket|m_l = -1, m_s = -\sfrac12>\\
+%       & = L_+ \ket|m_l = -1> \otimes \ket|m_s = -\sfrac12>
+%           + \ket|m_l = -1> \otimes S_+ \ket|m_s = -\sfrac12>\\
+%       & = \sqrt2\hbar\ket|m_l = 0, m_s = -\sfrac12>
+%               + \hbar\ket|m_l = -1, m_s = +\sfrac12>.
+%         \end{align*}
+%         By comparing the two actions, one can obtain the correspondence
+%         \[
+%           \ket|\sfrac32, -\sfrac12>
+%         = \sqrt{\sfrac23} \ket|m_l = 0, m_s = -\sfrac12>
+%           + \sqrt{\sfrac13} \ket|m_l = -1, m_s = +\sfrac12>.
+%         \]
+%         \item For $m_j = +\frac12 = m_l + m_s$, consider
+%         \begin{align*}
+%           J_-\ket|\sfrac32, +\sfrac32> &
+%         = \sqrt{\sfrac32(\sfrac32 + 1) - \sfrac32(\sfrac32 - 1)} \hbar
+%           \ket|\sfrac32, +\sfrac12>
+%         = \sqrt3 \hbar \ket|\sfrac32, +\sfrac12>\\
+%         \intertext{Since $J_- = L_- + S_-$, then it is equivalent to}
+%           J_-\ket|\sfrac32,+\sfrac32>
+%       & = (L_- + S_-) \ket|m_l = +1, m_s = +\sfrac12>\\
+%       & = L_- \ket|m_l = +1> \otimes \ket|m_s = +\sfrac12>
+%           + \ket|m_l = +1> \otimes S_- \ket|m_s = +\sfrac12>\\
+%       & = \sqrt2\hbar\ket|m_l = 0, m_s = +\sfrac12>
+%               + \hbar\ket|m_l = +1, m_s = -\sfrac12>.
+%         \end{align*}
+%         By comparing the two actions, one can obtain the correspondence
+%         \[
+%           \ket|\sfrac32, +\sfrac12>
+%         = \sqrt{\sfrac23} \ket|m_l = 0, m_s = +\sfrac12>
+%           + \sqrt{\sfrac13} \ket|m_l = +1, m_s = -\sfrac12>.
+%         \]
+%         \item For $m_j = +\frac32 = m_l + m_s$
+%         \[
+%           \ket|m_l, m_s> = \ket|l = 1, m_l> \otimes \ket|s = \sfrac12, m_s>
+%         = \ket|1, +1> \otimes \ket|\sfrac12, +\sfrac12>.
+%         \]
+%         So, $\ket|j = +\sfrac32, m_j = +\sfrac32>$ corresponds uniquely to
+%         $\ket|m_l = +1, m_s = +\sfrac12>$.
+%       \end{enumext}
+%       \item $j = \frac12$: $m_j = -\frac12$, $\frac12$.
+%       \begin{enumext}[label = \arabic*.]
+%         \item For $m_j = -\frac12 = m_l + m_s$,
+%         then $\ket|\sfrac12, +\sfrac12>$ can be written as a linear combination
+%         \[
+%           \ket|\sfrac12, +\sfrac12> = a\ket|m_l = -1, m_s = +\sfrac12>
+%         + b\ket|m_l = 0, m_s = -\sfrac12>,
+%         \]
+%         which is orthonormal to $\bra<\sfrac32, -\sfrac12|$
+%         \[
+%           0 = \braket<\sfrac32, -\sfrac12|\sfrac12, \sfrac12>
+%         = \sqrt{\sfrac23} b + \sqrt{\sfrac13} a = 0.
+%         \]
+%         Combining with the normalization $a^2 + b^2 = 1$, then the
+%         correspondence
+%         \[
+%           \ket|\sfrac12, -\sfrac12>
+%         = \sqrt{\sfrac23}\ket|m_l = -1, m_s = +\sfrac12>
+%           + \sqrt{\sfrac13}\ket|m_l = 0, m_s = -\sfrac12>.
+%         \]
+%         \item For $m_j = +\frac12 = m_l + m_s$,
+%         then $\ket|\sfrac12, +\sfrac12>$ can be written as a linear combination
+%         \[
+%           \ket|\sfrac12, +\sfrac12> = a\ket|m_l = 1, m_s = -\sfrac12>
+%         + b\ket|m_l = 0, m_s = +\sfrac12>,
+%         \]
+%         which is orthonormal to $\bra<\sfrac32, \sfrac12|$
+%         \[
+%           0 = \braket<\sfrac32, \sfrac12|\sfrac12, \sfrac12>
+%         = \sqrt{\sfrac23} b + \sqrt{\sfrac13} a = 0.
+%         \]
+%         Combining with the normalization $a^2 + b^2 = 1$, then the
+%         correspondence
+%         \[
+%           \ket|\sfrac12, +\sfrac12>
+%         = \sqrt{\sfrac23}\ket|m_l = 1, m_s = -\sfrac12>
+%           + \sqrt{\sfrac13}\ket|m_l = 0, m_s = \sfrac12>.
+%         \]
+%       \end{enumext}
+%     \end{enumext}
+%     \item \begin{proof}
+%     Consider a state $\ket|\psi> = \sum_n c_n \ket|n>$. Acting $K$ on it
+%     \[
+%       K\ket|\psi> = \sum_n c_n^* \ket|n>.
+%     \]
+%     Then, acting $\mathcal T^2$ on it, which can be expressed as
+%     \[
+%       \mathcal T^2 \ket|\psi>
+%     = \upe^{\iu\pi J_y/\hbar} K\ab[\upe^{\iu\pi J_y/\hbar} \sum_n c_n^* \ket|n>]
+%     = \upe^{\iu\pi J_y/\hbar} \upe^{\iu\pi J_y/\hbar} \sum_n c_n \ket|n>
+%     = \upe^{2\iu\pi J_y/\hbar} \ket|\psi>,
+%     \]
+%     where $J_y^* = -J_y$ is used.
+%     The operator $\upe^{\iu2\pi J_y/\hbar}$ represents a rotation by $-2\pi$
+%     about the yy-axis. For a state $\ket|j, m>$, a rotation by $\pm 2\pi$ about
+%     any axis yields a phase factor $(-1)^{2j}$, then $\mathcal T^2 = (-1)^{2j}$.
+%     \end{proof}
+%   \end{enumext}
+% \end{solution}
+
+\clearpage
 
 \begin{problem}[Two-site Hubbard model]
   Consider the Fock space for two sites and two spin-$1/2$ states on each site,
@@ -255,8 +1182,8 @@
     cases) of the following Hamiltonian
     \[
       \hat H_\text{ex} = \sum_{\alpha=x,y,z} J
-        (\bm c_1^\dagger \sigma_\alpha \bm c_1)
-        (\bm c_2^\dagger \sigma_\alpha \bm c_2),
+        (\bm c_1^\dagger \hat \sigma_\alpha \bm c_1)
+        (\bm c_2^\dagger \hat \sigma_\alpha \bm c_2),
     \]
     where $\bm c_{i=1,2}^\dagger \equiv (c_{i\uparrow}^\dagger,
     c_{i,\downarrow}^\dagger)$, and $\sigma_{\alpha=x,y,z}$ are Pauli matrices.
@@ -264,5 +1191,47 @@
   \end{enumext*}
 \end{problem}
 \begin{solution}
-  
+  $N_\uparrow = \sum_{i = 1,2} n\uparrow$ and $N_\downarrow$ are commute with
+  the Hamiltonian, so they are conserved.
+  \begin{enumext}
+    \item 0, 0, dim 1, $\ket|0,0>$ $H_\text{sub} = 0$
+    \item $N_\text{tot} = 1$, $H_\text{sub} = \epsilon + \begin{psmallmatrix}
+      & -t\\-t
+    \end{psmallmatrix}$
+    \begin{enumext}
+      \item 1, 0, dim 2, $\ket|0,\uparrow>$, $\ket|\uparrow,0>$
+      \item 0, 1, dim 2
+    \end{enumext}
+    \item $N_\text{tot} = 2$, 
+    \begin{enumext}
+      \item 2, 0, dim 1, $\ket|\uparrow, \uparrow>$, $H_\text{sub} = 2\epsilon$
+      \item 1, 1, dim 4
+      \item 0, 2, dim 1,
+      $\ket|\downarrow, \downarrow>$, $H_\text{sub} = 2\epsilon$
+    \end{enumext}
+    \item $N_\text{tot} = 3$
+    \begin{enumext}
+      \item 2, 1, dim 2, $\ket|\uparrow, \uparrow\downarrow>$,
+      \item $\ket|\uparrow\downarrow, \uparrow>$,
+      $H_\text{sub} = U + 3\epsilon +
+      \begin{psmallmatrix}
+        & t\\t
+      \end{psmallmatrix}$
+      \item 1, 2, dim 2
+    \end{enumext}
+    \item $N_\text{tot} = 4$, 2, 2, dim 1,
+    $\ket|\uparrow\downarrow, \uparrow\downarrow>$, $4\epsilon + 2U$.
+    \[
+      \begin{pNiceArray}[first-col, last-row]{cc:cc}
+        \ket|0,\uparrow\downarrow>  & U & 0 & -t & t\\
+        \ket|\uparrow\downarrow, 0> & 0 & U & -t & t\\
+        \hdottedline
+        \ket|\uparrow, \downarrow> & -t & -t & 0 & 0\\
+        \ket|\downarrow, \uparrow> & t  & t  & 0 & 0\\
+        & \bra<0,\uparrow\downarrow| & \bra<\uparrow\downarrow,0| 
+        & \bra<\uparrow, \downarrow| & \bra<\downarrow, \uparrow| 
+      \end{pNiceArray} + 2\epsilon
+    \]
+  \end{enumext}
+  The total dimension is $16$.
 \end{solution}

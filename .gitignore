@@ -23,3 +23,5 @@
 *.synctex(busy)
 *.toc
 *.xml
+*.nav
+*.snm

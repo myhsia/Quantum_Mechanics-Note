@@ -1,0 +1,37 @@
+\documentclass[ preprint, superscriptaddress, svgnames,
+                amssymb, aps, prb ]{revtex4-2}
+\usepackage{graphicx, subcaption, array, booktabs, mathtools, extarrows, tikz,
+            physics2, fixdif, bm, derivative, lmodern, amsthm, CJKutf8, url}
+\usetikzlibrary{arrows.meta}
+\tikzset{> = Stealth}
+\NewDocumentCommand \mathemph { O{} m } {\ifmmode
+  \colorbox{Crimson!15}{\vphantom{$\displaystyle #1$}$\displaystyle #2$}\else
+  \colorbox{Crimson!15}{\vphantom{#1}#2}\fi}
+\newdif \iu {i}
+\newdif \upe {e}
+\usepackage[mono = false]{libertine}
+\usephysicsmodule{ab, ab.braket, qtext.legacy, op.legacy}
+\usepackage[final, nopatch = footnote]{microtype}
+\linespread{1.1}
+\bibliographystyle{apsrev4-2}
+
+\begin{document}
+
+\title{Non-equilibirum Green's Function Approach}
+\author{Mingyu Xia (夏明宇)}
+\email{\ttfamily xiamingyu@westlake.edu.cn}
+\affiliation{Department of Physics, Westlake University}
+\date{2026-01-08, Final Project of Advanced Quantum Mechanics}
+
+\begin{CJK*}{UTF8}{gbsn}
+\maketitle
+\end{CJK*}
+
+\section{Introduction}
+
+\section{Langreth Theorem}
+
+\nocite{*}
+\bibliography{reference}
+
+\end{document}

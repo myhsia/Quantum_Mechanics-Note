@@ -1,4 +1,4 @@
-% Mingyu Xia (夏明宇, Westlake ID: 20251202247) Homework #i & #j
+% Mingyu Xia (夏明宇, Westlake ID: 20251202247) Homework #i
 \documentclass[11pt]{whatsnote}
 
 \usepackage{CJKutf8}
@@ -13,6 +13,9 @@
 \addbibresource{reference-math.bib}
 \usepackage{dsfont}
 \DeclareRobustCommand \identity {\mathds 1}
+% \let \upe \relax \let \iu \relax
+% \DeclareMathOperator \upe {e}
+% \DeclareRobustCommand \iu {\mathrm i\mkern1mu}
 
 \coverset{
   title   = Advanced Quantum Mechanics,
@@ -29,16 +32,16 @@
 \begin{document}
 
 \maketitle[teal]
-\frontmatter
-\tableofcontents
-\mainmatter
+% \frontmatter
+% \tableofcontents
+% \mainmatter
 
-\addtocounter{chapter}{-1}
-\include{./context/0_Preparation.tex}
-\include{./context/quiz1.tex}
-\include{./context/1_.tex}
-\include{./context/2_.tex}
-\include{./context/3_.tex}
+% \addtocounter{chapter}{-1}
+% \include{./context/0_Preparation.tex}
+% \include{./context/quiz1.tex}
+% \include{./context/1_.tex}
+% \include{./context/2_.tex}
+% \include{./context/3_.tex}
 
 \newcommand \sectionname {Lecture \#}
 \appendix
@@ -48,10 +51,10 @@
 \fancyhead[OR]{\fontfamily{lmr}\selectfont<<\texttt{\href{mailto:xiamingyu@westlake.edu.cn}{xiamingyu@westlake.edu.cn}}>>}
 \addcontentsline{toc}{chapter}{Problem Set}
 \renewcommand *\thesection{\sectionname \arabic{section}}
-\newweek
-\include{./context/hw0.tex}
-\newweek
-\include{./context/hw1.tex}
+% \newweek
+% \include{./context/hw0.tex}
+% \newweek
+% \include{./context/hw1.tex}
 \newweek
 \include{./context/hw2.tex}
 
