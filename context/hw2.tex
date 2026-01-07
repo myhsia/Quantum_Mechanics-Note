@@ -19,7 +19,7 @@
   ($\alpha = \Re\alpha + \iu\Im\alpha$, $\bar\alpha \equiv \alpha^*$), and
   \[
     \braket<\alpha|\beta>
-  = \upe^{-\frac12(\bar\alpha \alpha+\bar\beta\beta) + \bar\alpha \beta}
+  = \upe^{-\frac12(\bar\alpha \alpha+\bar\beta\beta) + \bar\alpha \beta}.
   \]
   We now continue to explore the use of coherent states to do path integral.
   \begin{enumext*}[label = (\alph*)]
@@ -62,7 +62,7 @@
     \[
       \mathcal K = \braket*\Big<\psi_f|\hat U(t_f, t_i)|\psi_i>
     = \braket*\Big<\psi_f|\prod_{k=0}^{N-1}
-        \exp[-\iu \epsilon \hat H(\hat a^\dagger, \hat a; t_k)]|\psi_i>
+        \exp[-\iu \epsilon \hat H(\hat a^\dagger, \hat a; t_k)]|\psi_i>,
     \]
     where $\epsilon = (t_f - t_i)/N$. Inserting the identity $\identity
     = \int \frac{\d^2\alpha}{\pi} \ketbra|\alpha><\alpha|$ in the gaps between
@@ -82,7 +82,7 @@
     = \upe^{-\iu\epsilon H} \braket<\alpha_k|\alpha_{k-1}>\\
     = \exp\ab[-\iu\epsilon H(\bar\alpha_k, \alpha_{k-1}, t_k)
       -\frac12(\bar\alpha_k \alpha_k + \bar\alpha_{k-1} \alpha_{k-1})
-      +\bar\alpha_k \alpha_{k-1}]
+      +\bar\alpha_k \alpha_{k-1}].
     \end{multline*}
     To calculate the products of overlaps, sum the exponents first.
     \begin{enumext}
@@ -189,7 +189,7 @@
     - \frac\iu\hbar \int_{t_i}^{t} \d t'
       \upe^{-\iu\omega(t-t')} \kappa\mathcal E(t')
     \xlongequal[\text{starts in vacuum}]{\alpha_i = 0}
-    -\frac\iu\hbar \int_{t_i}^{t} \d t' \upe^{-\iu\omega(t-t')} J(t')
+    -\frac\iu\hbar \int_{t_i}^{t} \d t' \upe^{-\iu\omega(t-t')} J(t').
     \]
     The coherent amplitude at the final time $t_f$ is
     \[
@@ -209,7 +209,7 @@
       \braket<n|\beta>
     = \frac{\beta^n}{\sqrt{n!}} \upe^{-|\beta|^2/2}, \quad
       \braket<n|\hat U(t_f, t_i)|0>
-    = \upe^{-\iu\varphi} \frac{\beta^n}{\sqrt{n!}} \upe^{-|\beta|^2/2}
+    = \upe^{-\iu\varphi} \frac{\beta^n}{\sqrt{n!}} \upe^{-|\beta|^2/2}.
     \]
     Expectation values in a coherent state separate into a classical piece plus
     vacuum fluctuations. The classical position is
@@ -225,8 +225,8 @@
     \]
     Since the driven coherent state is Gaussian, Wick's theorem holds.
     Denote the vacuum two-point Green's
-    function $G_{ij} \equiv \braket<0|T\hat x(t_i)\hat x(t_j)|0>$. Then the
-    full four-point function is
+    function $G_{ij} \equiv \braket<0|T\hat x(t_i)\hat x(t_j)|0>$.
+    Applying the contractions, the full four-point function is
     \begin{multline*}
       \braket<0|\mathcal T \hat x(t_1) \hat x(t_2) \hat x(t_3) \hat x(t_4)|0>
     = x_\text{classical}(1) x_\text{classical}(2)
@@ -344,7 +344,7 @@
       \end{psmallmatrix}
       \begin{psmallmatrix}
         0\\ 1
-      \end{psmallmatrix} = -\ket|\downarrow>,
+      \end{psmallmatrix} = -\ket|\downarrow>.
     \end{array}\]
     Then, after acting $\hat J_\pm$ to $\ket|\uparrow>$ and $\ket|\downarrow>$
     \[\begin{array}{@{}l@{~}c@{~}l@{\quad}l@{~}c@{~}l@{}}
@@ -379,7 +379,7 @@
         + (\alpha^*)^2 \hat J_+^2
     = -|\alpha|^2 \identity.
     \]
-    Then, it is obviously that
+    It is obviously that
     \[
       \hat X^3 = \hat X \hat X^2 = -|\alpha|^2 \hat X, \quad
       \hat X^4 = \hat X^2 \hat X^2 = |\alpha|^4 \identity. 
@@ -427,7 +427,7 @@
       \braket<\bm n|\bm B \cdot \bm \sigma|\bm n>
     = B_x\braket<\bm n|\hat \sigma_x|\bm n>
     + B_y\braket<\bm n|\hat \sigma_y|\bm n>
-    + B_z\braket<\bm n|\hat \sigma_z|\bm n>
+    + B_z\braket<\bm n|\hat \sigma_z|\bm n>.
     \]
     Since $\sigma_x\ket|n> = \cos\frac\theta2 \ket|\downarrow>
         + \sin\frac\theta2\upe^{\iu\varphi}\ket|\uparrow>$,
@@ -441,7 +441,7 @@
     \xlongequal[\braket<s|s'> = 0]{\braket<s|s> = 1} B_x \ab(
       \cos\frac\theta2 \sin\frac\theta2 \upe^{+\iu\varphi}
     + \sin\frac\theta2 \cos\frac\theta2 \upe^{-\iu\varphi})
-    = B_x \sin\theta \cos\varphi
+    = B_x \sin\theta \cos\varphi.
     \end{multline*}
     Since $\sigma_y\ket|n> = \iu\cos\frac\theta2 \ket|\downarrow>
         - \iu \sin\frac\theta2\upe^{\iu\varphi}\ket|\uparrow>$,
@@ -455,7 +455,7 @@
     \xlongequal[\braket<s|s'> = 0]{\braket<s|s> = 1} B_y \ab(
     - \iu \cos\frac\theta2 \sin\frac\theta2 \upe^{+\iu\varphi}
     + \iu \sin\frac\theta2 \cos\frac\theta2 \upe^{-\iu\varphi})
-    = B_y \sin\theta \sin\varphi
+    = B_y \sin\theta \sin\varphi.
     \end{multline*}
     Since $\sigma_z\ket|n> = \cos\frac\theta2 \ket|\uparrow>
         - \sin\frac\theta2\upe^{\iu\varphi}\ket|\downarrow>$,
@@ -469,7 +469,7 @@
     \xlongequal[\braket<s|s'> = 0]{\braket<s|s> = 1} B_z \ab(
       \cos\frac\theta2 \cos\frac\theta2
     - \sin\frac\theta2 \sin\frac\theta2)
-    = B_z \cos\theta
+    = B_z \cos\theta.
     \end{multline*}
     Combining these three terms
     \begin{multline*}
@@ -477,7 +477,7 @@
     = B_x \sin\theta \cos\varphi + B_y \sin\theta \sin\varphi + B_z \cos\theta\\
     = (B_x, B_y, B_z) \cdot
       (\sin\theta\cos\varphi, \sin\theta\sin\varphi, \cos\theta)
-    = \bm B \cdot \bm n
+    = \bm B \cdot \bm n.
     \end{multline*}
     \item From $\ket|\bm n> = \cos\frac\theta2\ket|\uparrow>
     + \sin\frac\theta2\upe^{\iu\varphi} \ket|\downarrow>$,
@@ -529,7 +529,8 @@
         \sin^2\frac\theta2 \sin^2\frac{\theta'}{2} +
         2 \cos\frac\theta2 \cos\frac{\theta'}{2}
           \sin\frac\theta2 \sin\frac{\theta'}{2} \cos\delta\\
-      = \frac12 (1 + \cos\theta \cos\theta' + \sin\theta \sin\theta' \cos\delta)
+      = \frac12 (1 + \cos\theta \cos\theta'
+        + \sin\theta \sin\theta' \cos\delta).
       \end{multline*}
       Since $\bm n \cdot \bm n'
       = \sin\theta \sin\theta' \cos \delta + \cos\theta \cos\theta'$, then
@@ -546,41 +547,41 @@
           + \sin\frac\theta2 \sin\frac{\theta'}{2} \upe^{\iu\delta}\\
       = \ab(\cos\frac\theta2 \cos\frac{\theta'}{2}
       + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta)
-      + \iu \ab(\sin\frac\theta2 \sin\frac{\theta'}{2} \sin \delta)
+      + \iu \ab(\sin\frac\theta2 \sin\frac{\theta'}{2} \sin \delta).
       \end{multline*}
       Then, the phase satisfies
       \[
         \tan \Phi = \frac{\sin\frac\theta2 \sin\frac{\theta'}{2} \sin \delta}
           {\cos\frac\theta2 \cos\frac{\theta'}{2}
-          + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta}
+          + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta}.
       \]
-      The numerator of the known phase
+      The numerator of the known phase is
       \[
         \hat z \cdot \bm n \times \bm n'
       = \sin\theta \cos\varphi \sin\theta' \sin\varphi'
       - \sin\theta \sin\varphi \sin\theta' \sin\varphi',
       \]
-      The denominator
+      while the denominator is
       \begin{multline*}
         1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z
       = 1 + \cos\theta
         + \sin\theta \sin\theta' \cos \delta + \cos\theta \cos\theta'
         + \cos\theta'\\
-      = (1 + \cos\theta)(1 + \cos\theta') + \sin\theta \sin\theta' \cos \delta
+      = (1 + \cos\theta)(1 + \cos\theta') + \sin\theta \sin\theta' \cos \delta.
       \end{multline*}
       Recalling $\cos\theta = 2\cos^2\frac\theta2 - 1$
       \[
         1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z
       = 4\cos^2\frac\theta2 \cos^2\frac{\theta'}{2}
       + 4 \sin\frac\theta2 \cos\frac\theta2
-          \sin\frac{\theta'}{2} \cos\frac{\theta'}{2} \cos \delta
+          \sin\frac{\theta'}{2} \cos\frac{\theta'}{2} \cos \delta.
       \]
       Then, the phase
       \[
         \tan\ab(\frac\Omega2)
       = \frac{\sin\frac\theta2 \sin\frac{\theta'}{2} \sin \delta}
           {\cos\frac\theta2 \cos\frac{\theta'}{2}
-          + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta},
+          + \sin\frac\theta2 \sin\frac{\theta'}{2} \cos \delta}.
       \]
       The phase on LSH matchs that on RHS.
     \end{enumext}
@@ -590,7 +591,7 @@
     = \frac{\hat z \cdot (\bm n \times \bm n')}
         {1 + \hat z \cdot \bm n + \bm n \cdot \bm n' + \bm n' \cdot \hat z}
     = \ab(\frac{1 + \bm n \cdot \bm n'}{2})^{\frac12}
-      \upe^{\iu\Omega(\hat z, \bm n, \bm n')/2}
+      \upe^{\iu\Omega(\hat z, \bm n, \bm n')/2}.
     \]
     is true.
     \item Slicing the imaginary time into $N$ pieces with $\epsilon = \beta/N$,
@@ -598,7 +599,7 @@
     \[
       \upe^{-\beta\hat H} = (\upe^{-\epsilon\hat H})^N,\quad
       Z = \Tr(\underbrace{\upe^{-\epsilon\hat H} \cdots \upe^{-\epsilon\hat H}}_
-        \text{$n$ terms})
+        \text{$n$ terms}).
     \]
     Choosing the basis $\{\ket|a>\}$. By difinition of the trace
     \[
@@ -626,7 +627,7 @@
       \braket<\bm n_k|\bm n_{k-1}> \ab(1 -
         \frac{\epsilon\braket<\bm n_k|\hat H|\bm n_{k-1}>}
           {\braket<\bm n_k|\bm n_{k-1}>})\\
-      \xlongequal[\bm n_k - \bm n_{k-1} = O(\epsilon)]
+      \xlongequal[\bm n_k - \bm n_{k-1} = \mathcal O(\epsilon)]
         {\text{Smooth-path assumption}}
       \braket<\bm n_k|\bm n_{k-1}> \ab(1 - \epsilon \bm B \cdot \bm n_k)
       \approx \braket<\bm n_k|\bm n_{k-1}> \upe^{-\bm B\cdot\bm n_k}.
@@ -755,7 +756,7 @@
       [a, b^n] = [\hat a, \hat b]\hat b^{n-1}
                 + \hat b[\hat a, \hat b]\hat b^{n-2} + \cdots
                 + \hat b^{n-1}[\hat a, \hat b]
-    = \sum_{m=0}^{n-1} a^m [a, b] b^{n-1-m}.
+    = \sum_{m=0}^{n-1} b^m [a, b] b^{n-1-m}.
     \]
     Given $[\hat k, \hat x] = -\iu$, then
     \[
@@ -788,14 +789,14 @@
     \]
     Rearrange it, then
     \[
-      \hat T_\lambda \hat x = (\hat x + \lambda) \hat T_\lambda
+      \hat T_\lambda \hat x = (\hat x + \lambda) \hat T_\lambda.
     \]
     Act the both sides on $\ket|x>$
     \begin{align*}
       \text{LHS} & = \hat T_\lambda \hat x \ket|x> = \hat T_\lambda x \ket|x>
     = x \hat T_\lambda \ket|x> = x \ket|x + \lambda>,\\
       \text{RHS} & = (\hat x + \lambda) \hat T_\lambda \ket|x>
-    = (\hat x + \lambda) \ket|x + \lambda>
+    = (\hat x + \lambda) \ket|x + \lambda>.
     \end{align*}
     Rearrange it, then
     \[
@@ -850,9 +851,16 @@
     For the projected Hamiltonian, the kinetic term
     \[
       \braket*<n|\frac{\hbar^2\hat k^2}{2m}|n'>
-    = \ab(\frac{n^2\pi^2\hbar^2}{2m\lambda^2}) \delta_{nn'} = E_n \delta_{nn'}
+    = \ab(\frac{n^2\pi^2\hbar^2}{2m\lambda^2}) \delta_{nn'} = E_n \delta_{nn'}.
     \]
-    Similarly for the potential term.
+    Since the moving operator in $k$-space
+    \[
+      \frac12\braket<2n|\upe^{\iu\frac{2\pi}{\lambda}\hat x}
+        + \upe^{-\iu\frac{2\pi}{\lambda}\hat x}|2n'>
+    = \frac12(\braket<2n|2(n' + 1)> + \braket<2n'|2(n' - 1)>),
+    \]
+    Then, the projection of the potential term can be expressed in terms of the
+    $\delta$-functions.
     \begin{enumext}
       \item For $k_n = 2\pi n/\lambda$, the projected Hamiltonian matrix
       elements are
@@ -867,12 +875,6 @@
         \delta_{nn'} + \frac V2(\delta_{n,n'+1} + \delta_{n,n'-1}),
       \]
     \end{enumext}
-    where the moving operator in $k$-space
-    \[
-      \frac12\braket<2n|\upe^{\iu\frac{2\pi}{\lambda}\hat x}
-        + \upe^{-\iu\frac{2\pi}{\lambda}\hat x}|2n'>
-    = \frac12(\braket<2n|2(n' + 1)> + \braket<2n'|2(n' - 1)>).
-    \]
     \item Expressing the plane-wave basis states as $\ket|n>$
     with $\braket<x|n> = \frac{1}{\sqrt L} e^{\iu(n\pi/\lambda) x}$,
     so that $\hat k \ket|n> = (n\pi/\lambda)\ket|n>$ and the unperturbed
@@ -933,15 +935,15 @@
       \ket|\tilde g>
     = \ket|0>
       - \frac{V}{2E_2^{(0)}}(\ket|+2>+\ket|-2>)
-      + \frac{V^2}{4\,E_4^{(0)}E_2^{(0)}}(\ket|+4>+\ket|-4>)
+      + \frac{V^2}{4\,E_4^{(0)}E_2^{(0)}}(\ket|+4>+\ket|-4>).
     \]
-    Then normalizing to $O(V^2)$. The norm squared is
+    Then normalizing to $\mathcal O(V^2)$. The norm squared is
     \[
       \braket<\tilde g|\tilde g> = 1 + 2\ab(\frac{V}{2E_2^{(0)}})^2
         + 2\ab(\frac{V^2}{4E_4^{(0)}E_2^{(0)}})^2.
     \]
-    Keeping only the leading $O(V^2)$ normalization correction, the normalized
-    state is
+    Keeping only the leading $\mathcal O(V^2)$ normalization correction, the
+    normalized state is
     \[
       \ket|g> \approx \ab(1 - \frac{V^2}{4\,[E_2^{(0)}]^2}) \ket|0>
       - \frac{V}{2E_2^{(0)}}(\ket|+2>+\ket|-2>)
@@ -1062,8 +1064,8 @@
     \]
     where $\epsilon$, $c$, $d$, $e \in \mathbb R$ ($+$),
     $b = a^* \in \mathbb C$ ($-$).
-    \item Prove the invariance under $D_3$ first by calculation the commutators
-    between $\hat H$ and $\hat R$, $\hat \rho$ of $D_3$.
+    \item Calculating the commutators between $\hat H$ and $\hat R$,
+    $\hat \rho$ of $D_3$ to prove the invariance under $D_3$.
     \begin{enumext}
       \item $[\hat H, \hat R]$.\\
       Since $\hat R = \hat R_+ \oplus \hat R_-$, and $\hat R_+$ and $\hat R_-$
@@ -1072,7 +1074,8 @@
         [\hat R, \hat R_+ \oplus \hat R_-^2] = 0, \quad
         [\hat R, \hat R_+^2 \oplus \hat R_-] = 0.
       \]
-      Moreover, using $\hat R \hat \rho_i \hat R^{-1} = \hat \rho_{i+1}$ (indices modulo 3), we find
+      Moreover, using $\hat R \hat \rho_i \hat R^{-1} = \hat \rho_{i+1}$
+      (indices modulo 3), we find
       \[
         \hat R (\sum_{i=0}^2 \hat \rho_i) \hat R^{-1}
       = \sum_{i=0}^2 \hat \rho_{i+1} = \sum_{i=0}^2 \hat \rho_i,
@@ -1088,7 +1091,8 @@
       \[
         \hat \rho (\hat R_+ \oplus \hat R_-^2) \hat \rho^{-1}
       = \hat R_-^2 \oplus \hat R_+,\quad
-        \hat \rho (\hat R_+^2 \oplus \hat R_-) \hat \rho^{-1} = \hat R_- \oplus \hat R_+^2.
+        \hat \rho (\hat R_+^2 \oplus \hat R_-) \hat \rho^{-1}
+      = \hat R_- \oplus \hat R_+^2.
       \]
       For the reflection part
       using $\hat \rho \hat \rho_i \hat \rho^{-1} = \hat \rho_{-i}$, we have
@@ -1168,10 +1172,10 @@
       with eigenvalues $E_{0\pm} = 2\Re(t) \pm 3s$.
       \item $k \neq 0$: $\hat H_\rho$ vanishes, the states are eigenstates
       \begin{alignat*}{2}
-          \hat H \ket|1, +> = (t \omega + t^* \omega^2) \ket|1, +>, &
+          \hat H \ket|1, +> = (t \omega + t^* \omega^2) \ket|1, +>, & \quad
         & \hat H \ket|2, -> = (t \omega + t^* \omega^2) \ket|2, ->, \\
           \hat H \ket|1, -> = (t \omega^2 + t^* \omega) \ket|1, ->, &
-        & \hat H \ket|2, +> &= (t \omega^2 + t^* \omega) \ket|2, +>.
+        & \hat H \ket|2, +> = (t \omega^2 + t^* \omega) \ket|2, +>.
       \end{alignat*}
       Let $t = |t| \upe^{\iu\varphi}$. Then
       \[
@@ -1347,19 +1351,19 @@
     \[
       J_- =
       \begin{pNiceMatrix}[first-row, first-col]
-        & \ket|\sfrac32, +\sfrac32> & \ket|\sfrac32, +\sfrac12>
-        & \ket|\sfrac32, -\sfrac12> & \ket|\sfrac32, -\sfrac32>\\
-        \bra<\sfrac32, +\sfrac32| & 0           & 0           & 0 & 0\\
-        \bra<\sfrac32, +\sfrac12| & \sqrt3\hbar & 0           & 0 & 0\\
-        \bra<\sfrac32, -\sfrac12| & 0           & 2\hbar      & 0 & 0\\
-        \bra<\sfrac32, -\sfrac32| & 0 & 0       & \sqrt3\hbar & 0
+        & \bra<\sfrac32, +\sfrac32| & \bra<\sfrac32, +\sfrac12|
+        & \bra<\sfrac32, -\sfrac12| & \bra<\sfrac32, -\sfrac32|\\
+        \ket|\sfrac32, +\sfrac32> & 0 & \sqrt3\hbar & 0      & 0\\
+        \ket|\sfrac32, +\sfrac12> & 0 & 0           & 2\hbar & 0\\
+        \ket|\sfrac32, -\sfrac12> & 0 & 0           & 0      & \sqrt3\hbar\\
+        \ket|\sfrac32, -\sfrac32> & 0 & 0           & 0      & 0
       \end{pNiceMatrix}, \enspace
       J_+ =
       \begin{pmatrix}
-        0 & \sqrt3\hbar & 0 & 0\\
-        0 & 0 & 2\hbar & 0\\
-        0 & 0 & 0 & \sqrt3\hbar\\
-        0 & 0 & 0 & 0
+        0 & 0 & 0 & 0\\
+        \sqrt3\hbar & 0 & 0 & 0\\
+        0 & 2\hbar & 0 & 0\\
+        0 & 0 & \sqrt3\hbar & 0
       \end{pmatrix}.
     \]
     From $J_\pm = J_x \pm \iu J_y$, one can obtain
@@ -1401,7 +1405,7 @@
           J_+\ket|\sfrac32, -\sfrac32> &
         = \sqrt{\sfrac32(\sfrac32 + 1) - (-\sfrac32)(-\sfrac32 + 1)} \hbar
           \ket|\sfrac32, +\sfrac12>
-        = \sqrt3 \hbar \ket|\sfrac32, -\sfrac12>\\
+        = \sqrt3 \hbar \ket|\sfrac32, -\sfrac12>.\\
         \intertext{Since $J_- = L_+ + S_+$, then it is equivalent to}
           J_+\ket|\sfrac32, -\sfrac32>
       & = (L_+ + S_+) \ket|m_l = -1, m_s = -\sfrac12>\\
@@ -1751,13 +1755,13 @@
     = \begin{cases*}
       +\frac14, & $S = 1$, triplet,\\
       -\frac34, & $S = 0$, singlet.
-      \end{cases*},
+      \end{cases*}
     \]
     where $\mathbf S = \mathbf S_1 + \mathbf S_2$.
     Therefore, the spectrum of $\hat H_\text{ex}$ in this subspace is
     \[
       E_\text{triplet} = J, \quad
-      E_\text{singlet} = -3J.
+      E_\text{singlet} = -3J,
     \]
     where $E_\text{triplet}$ has a three-fold degeneracy, and $E_\text{singlet}$
     has no degeneracy.
@@ -1778,7 +1782,8 @@
     for $J > 0$ or $J < 0$.
     
     Comparing with part (c), virtual hopping generates an antiferromagnetic
-    superexchange interaction $H_{\text{eff}} = J_H \mathbf S_1 \cdot \mathbf S_2$ with $J_H = 4t^2/U>0$,
+    superexchange interaction
+    $H_{\text{eff}} = J_H \mathbf S_1 \cdot \mathbf S_2$ with $J_H = 4t^2/U>0$,
     corresponding to $J = t^2/U$ in the present notation.
   \end{enumext}
 \end{solution}
